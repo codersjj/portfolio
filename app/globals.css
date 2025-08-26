@@ -46,9 +46,16 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* 自动根据 data-theme 切换 .dark 类 */
+html[data-theme="dark"] body {
+  background: var(--background-dark);
+  color: var(--foreground);
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
+  --background-dark: oklch(0 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
