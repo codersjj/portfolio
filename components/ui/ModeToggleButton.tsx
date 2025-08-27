@@ -7,7 +7,7 @@ import useSound from 'use-sound';
 const switchOnSoundUrl = '/sounds/switch-on.mp3'
 const switchOffSoundUrl = '/sounds/switch-off.mp3'
 
-export default function ModeToggleButton({ className }: { className?: string } = { className: '' }) {
+export default function ModeToggleButton({ className = '' }: { className?: string }) {
   const { theme, setTheme } = useTheme()
 
   const [playSwitchOn] = useSound(switchOnSoundUrl)
@@ -84,8 +84,8 @@ export default function ModeToggleButton({ className }: { className?: string } =
       } ${className}`}
     >
       <svg
-        width="1.5rem"
-        height="1.5rem"
+        width="1.25rem"
+        height="1.25rem"
         viewBox="0 0 24 24"
         className="transition-colors duration-300"
         style={{
