@@ -2,9 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import useSound from 'use-sound';
+
+const switchOnSoundUrl = '/sounds/switch-on.mp3'
+const switchOffSoundUrl = '/sounds/switch-off.mp3'
 
 export default function ModeToggleButton({ className }: { className?: string } = { className: '' }) {
   const { theme, setTheme } = useTheme()
+
+  const [playSwitchOn] = useSound(switchOnSoundUrl)
+  const [playSwitchOff] = useSound(switchOffSoundUrl)
+
   const [isDark, setIsDark] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -26,6 +34,12 @@ export default function ModeToggleButton({ className }: { className?: string } =
     if (isTransitioning) return; // 防止重复点击
 
     setIsTransitioning(true);
+
+    if (isDark) {
+      playSwitchOn();
+    } else {
+      playSwitchOff()
+    }
 
     // 立即切换主题状态和DOM
     const newTheme = !isDark;
