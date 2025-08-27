@@ -3,15 +3,21 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import useSound from 'use-sound';
+import { useMuteStore } from "@/providers/mute-store-provider";
 
 const switchOnSoundUrl = '/sounds/switch-on.mp3'
 const switchOffSoundUrl = '/sounds/switch-off.mp3'
 
 export default function ModeToggleButton({ className = '' }: { className?: string }) {
   const { theme, setTheme } = useTheme()
+  const { isMuted } = useMuteStore(state => state);
 
-  const [playSwitchOn] = useSound(switchOnSoundUrl)
-  const [playSwitchOff] = useSound(switchOffSoundUrl)
+  const [playSwitchOn] = useSound(switchOnSoundUrl, {
+    soundEnabled: !isMuted
+  })
+  const [playSwitchOff] = useSound(switchOffSoundUrl, {
+    soundEnabled: !isMuted
+  })
 
   const [isDark, setIsDark] = useState(false);
   const [isHovered, setIsHovered] = useState(false);

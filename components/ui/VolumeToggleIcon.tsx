@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useSound from "use-sound";
+import { useMuteStore } from "@/providers/mute-store-provider";
 
 const enableSoundUrl = "/sounds/enable-sound.mp3";
 const disableSoundUrl = "/sounds/disable-sound.mp3";
@@ -7,8 +8,7 @@ const disableSoundUrl = "/sounds/disable-sound.mp3";
 export default function VolumeToggleIcon({ className = '' }: { className?: string }) {
   const [playEnableSound] = useSound(enableSoundUrl);
   const [playDisableSound] = useSound(disableSoundUrl);
-
-  const [isMuted, setIsMuted] = useState(false);
+  const { isMuted, setMuted } = useMuteStore((state) => state);
 
   const toggleMute = () => {
     if (isMuted) {
@@ -17,7 +17,7 @@ export default function VolumeToggleIcon({ className = '' }: { className?: strin
       playDisableSound();
     }
 
-    setIsMuted(!isMuted);
+    setMuted(!isMuted);
   };
 
   return (
