@@ -46,6 +46,23 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme inline {
+  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
+  var(--delay, 0ms);
+
+  @keyframes cell-ripple {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+}
+
 /* 自动根据 data-theme 切换 .dark 类 */
 html[data-theme="dark"] body {
   background: var(--background-dark);

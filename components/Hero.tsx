@@ -4,7 +4,12 @@ import React, { useEffect, useState } from 'react';
 import { Spotlight } from './ui/spotlight-new';
 import ModeToggleButton from './ui/ModeToggleButton';
 import VolumeToggleIcon from './ui/VolumeToggleIcon';
+import { BackgroundRippleEffect } from './ui/background-ripple-effect';
+import { TextGenerateEffect } from './ui/text-generate-effect';
+import BorderMagicButton from './ui/BorderMagicButton';
+import { FaLocationArrow } from 'react-icons/fa6';
 
+const words = 'Transforming Concepts into Seamless User Experiences'
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false)
@@ -20,12 +25,28 @@ const Hero = () => {
   }
 
   return (
-    <div className="w-full h-screen pt-36 pb-20">
+    <div className="w-full h-screen pt-24 pb-20">
       <div className='fixed top-6 right-6 flex gap-4'>
         <VolumeToggleIcon />
         <ModeToggleButton />
       </div>
       <Spotlight />
+      <div className="relative flex min-h-screen w-full flex-col items-center justify-start overflow-hidden">
+        <BackgroundRippleEffect />
+        <div className="mt-60 w-full">
+          <TextGenerateEffect words={words} className='relative z-10 text-center' filter={true} duration={1.5} />
+          <p className="relative z-10 mx-auto mt-4 max-w-6xl text-center text-base md:text-xl lg:text-2xl text-neutral-800 dark:text-neutral-500">
+            Hi, I'm Shane, a front-end developer specializing in crafting engaging and intuitive web experiences.
+          </p>
+        </div>
+        <a href="#about" className='mt-8'>
+          <BorderMagicButton
+            title='View My Work'
+            icon={<FaLocationArrow />}
+            position='right'
+          />
+        </a>
+      </div>
     </div>
   );
 }
