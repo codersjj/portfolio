@@ -7,6 +7,7 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 import { cn } from "@/lib/utils";
+import { type IconType } from "react-icons";
 
 
 export const FloatingNav = ({
@@ -17,7 +18,7 @@ export const FloatingNav = ({
   navItems: {
     name: string;
     link: string;
-    icon?: JSX.Element;
+    icon?: IconType;
   }[];
   className?: string;
   onVisibleChange?: (visible: boolean) => void;
@@ -83,8 +84,16 @@ export const FloatingNav = ({
               "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
             )}
           >
-            <span className="block sm:hidden text-lg">{navItem.icon}</span>
-            <span className="hidden sm:block text-xs sm:text-sm">{navItem.name}</span>
+            {navItem.icon ? (
+              <>
+                <span className="block sm:hidden text-lg">
+                  <navItem.icon />
+                </span>
+                <span className="hidden sm:block text-xs sm:text-sm">{navItem.name}</span>
+              </>
+            ) : (
+              <span className="block text-xs sm:text-sm">{navItem.name}</span>
+            )}
           </a>
         ))}
         {/* <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">

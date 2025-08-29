@@ -51,15 +51,15 @@ const TopNavigation = () => {
         </a>
 
         {/* Navigation Links */}
-        <div className="hidden md:flex items-center space-x-8">
-          {navItems.map((item, index) => (
+        <div className="hidden sm:flex items-center space-x-8">
+          {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
               className="transition-colors duration-200 relative group text-base"
             >
               {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--color-primary)] transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </div>
@@ -89,7 +89,7 @@ const TopNavigation = () => {
         </div>
 
         {/* Mobile menu button */}
-        {/* <div className="md:hidden">
+        {/* <div className="sm:hidden">
           <button className="p-2 rounded-lg hover:bg-gray-800 transition-colors duration-200">
             <div className="w-6 h-6 flex flex-col justify-center space-y-1">
               <span className="block w-full h-0.5 bg-gray-300"></span>

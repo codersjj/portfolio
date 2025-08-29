@@ -13,12 +13,20 @@ import { CometCard } from "@/components/ui/comet-card";
 
 const words = 'Transforming Concepts into Seamless User Experiences'
 
-const Hero = () => {
+
+interface HeroProps {
+  onLoaded?: () => void;
+}
+
+const Hero = ({ onLoaded }: HeroProps) => {
   const [mounted, setMounted] = useState(false)
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true)
+    if (onLoaded) {
+      onLoaded();
+    }
   }, [])
 
   if (!mounted) {
@@ -27,20 +35,20 @@ const Hero = () => {
   }
 
   return (
-    <div className="w-full h-screen pt-16 pb-10 sm:pt-24 sm:pb-20">
+    <div className="w-full min-h-[85vh] pt-16 pb-10 sm:pt-24 sm:pb-20">
       <Spotlight />
-      <div className="relative flex min-h-screen w-full flex-col items-center justify-start overflow-hidden">
+      <div className="relative flex w-full flex-col items-center justify-start overflow-hidden">
         <BackgroundRippleEffect />
 
         <CometCard className="absolute z-20 top-8 sm:top-10">
           <img
             src="https://avatars.githubusercontent.com/u/44868357?v=4"
             alt="avatar"
-            className="w-32 h-32 sm:w-50 sm:h-50 rounded-full cursor-pointer border-4 border-white dark:border-neutral-800 shadow-lg"
+            className="w-38 h-38 sm:w-50 sm:h-50 rounded-full cursor-pointer border-4 border-white dark:border-neutral-800 shadow-lg"
           />
         </CometCard>
 
-        <div className="mt-40 sm:mt-60 w-full px-4">
+        <div className="mt-50 sm:mt-60 w-full px-4">
           <TextGenerateEffect
             words={words}
             className="relative z-10 text-center text-lg sm:text-2xl lg:text-4xl"
