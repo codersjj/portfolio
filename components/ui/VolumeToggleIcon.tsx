@@ -1,4 +1,6 @@
-import { useState } from "react";
+'use client'
+
+import { useEffect, useState } from "react";
 import useSound from "use-sound";
 import { useMuteStore } from "@/providers/mute-store-provider";
 
@@ -6,6 +8,7 @@ const enableSoundUrl = "/sounds/enable-sound.mp3";
 const disableSoundUrl = "/sounds/disable-sound.mp3";
 
 export default function VolumeToggleIcon({ className = '' }: { className?: string }) {
+  const [mounted, setMounted] = useState(false);
   const [playEnableSound] = useSound(enableSoundUrl);
   const [playDisableSound] = useSound(disableSoundUrl);
   const { isMuted, setMuted } = useMuteStore((state) => state);
@@ -20,6 +23,13 @@ export default function VolumeToggleIcon({ className = '' }: { className?: strin
     setMuted(!isMuted);
   };
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // 在 hydration 完成前，使用固定的默认状态
+  const displayMuted = mounted ? isMuted : false;
+
   return (
     <button
       onClick={toggleMute}
@@ -27,7 +37,7 @@ export default function VolumeToggleIcon({ className = '' }: { className?: strin
     >
       {/* 音量图标容器 */}
       <div className={`relative w-6 h-6 flex items-center justify-center transition-all duration-300 ${
-        isMuted ? 'group-hover:animate-[wiggle_0.4s_ease-in-out]' : ''
+        displayMuted ? 'group-hover:animate-[wiggle_0.4s_ease-in-out]' : ''
       }`}>
         {/* 扬声器基础形状 */}
         <svg
@@ -44,7 +54,7 @@ export default function VolumeToggleIcon({ className = '' }: { className?: strin
             strokeLinejoin="round"
             fill="none"
             className={`transition-all duration-500 ease-in-out ${
-              isMuted ? 'transform translate-x-2' : ''
+              displayMuted ? 'transform translate-x-2' : ''
             }`}
           />
 
@@ -55,7 +65,7 @@ export default function VolumeToggleIcon({ className = '' }: { className?: strin
             strokeWidth="1.5"
             strokeLinecap="round"
             className={`transition-all duration-300 ${
-              isMuted
+              displayMuted
                 ? "opacity-0 scale-75"
                 : "opacity-100 scale-100 group-hover:animate-[wave_.5s_ease-in-out_1]"
             }`}
@@ -68,7 +78,7 @@ export default function VolumeToggleIcon({ className = '' }: { className?: strin
             strokeWidth="1.5"
             strokeLinecap="round"
             className={`transition-all duration-500 delay-75 ${
-              isMuted
+              displayMuted
                 ? "opacity-0 scale-75"
                 : "opacity-70 scale-100 group-hover:animate-[wave_.5s_ease-in-out_1_0.2s]"
             }`}

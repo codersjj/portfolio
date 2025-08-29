@@ -9,19 +9,27 @@ const switchOnSoundUrl = '/sounds/switch-on.mp3'
 const switchOffSoundUrl = '/sounds/switch-off.mp3'
 
 export default function ModeToggleButton({ className = '' }: { className?: string }) {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
   const { isMuted } = useMuteStore(state => state);
 
   const [playSwitchOn] = useSound(switchOnSoundUrl, {
     soundEnabled: !isMuted
-  })
+  });
   const [playSwitchOff] = useSound(switchOffSoundUrl, {
     soundEnabled: !isMuted
-  })
+  });
 
   const [isDark, setIsDark] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [canHover, setCanHover] = useState(false);
+
+  // 检测设备是否支持 hover
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      setCanHover(window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+    }
+  }, []);
 
   // 初始化主题
   useEffect(() => {
@@ -44,7 +52,7 @@ export default function ModeToggleButton({ className = '' }: { className?: strin
     if (isDark) {
       playSwitchOn();
     } else {
-      playSwitchOff()
+      playSwitchOff();
     }
 
     // 立即切换主题状态和DOM
@@ -59,7 +67,7 @@ export default function ModeToggleButton({ className = '' }: { className?: strin
       localStorage.setItem('theme', 'light');
     }
 
-    setTheme(theme === 'dark' ? 'light' : 'dark')
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   // 监听动画完成事件，使用更可靠的回调
@@ -80,13 +88,15 @@ export default function ModeToggleButton({ className = '' }: { className?: strin
   return (
     <button
       onClick={toggleTheme}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      {...(canHover ? {
+        onMouseEnter: () => setIsHovered(true),
+        onMouseLeave: () => setIsHovered(false)
+      } : {})}
       disabled={isTransitioning}
       className={`cursor-pointer ${
         isDark
-          ? 'text-gray-300'
-          : 'text-black'
+          ? 'text-gray-300 hover:text-yellow-200'
+          : 'text-black hover:text-yellow-500'
       } ${className}`}
     >
       <svg
@@ -256,7 +266,7 @@ export default function ModeToggleButton({ className = '' }: { className?: strin
                   animationName: isTransitioning
                     ? 'moonFadeOut'
                     : isHovered
-                      ? 'moonWiggle'
+                      ? 'none'
                       : 'none',
                   animationDuration: isTransitioning ? '0.3s' : isHovered ? '1.2s' : '0s',
                   animationTimingFunction: isTransitioning ? 'ease-in' : isHovered ? 'ease-in-out' : 'linear',
