@@ -28,10 +28,6 @@ const Hero = () => {
 
   return (
     <div className="w-full h-screen pt-24 pb-20">
-      <div className='fixed top-6 right-6 flex gap-4'>
-        <VolumeToggleIcon />
-        <ModeToggleButton />
-      </div>
       <Spotlight />
       <div className="relative flex min-h-screen w-full flex-col items-center justify-start overflow-hidden">
         <BackgroundRippleEffect />
