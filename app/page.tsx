@@ -13,8 +13,8 @@ export default function Home() {
   };
 
   return (
-    <main className="relative flex flex-col justify-center items-center mx-auto px-5 sm:px-10">
-      <div className="max-w-7xl w-full">
+    <main className="relative flex flex-col justify-center items-center mx-auto px-4 sm:px-6 min-h-screen">
+      <div className="max-w-7xl mx-auto w-full">
         <FloatingNav navItems={navItems} onVisibleChange={handleVisibleChange} />
         <Hero />
       </div>

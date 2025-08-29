@@ -27,27 +27,38 @@ const Hero = () => {
   }
 
   return (
-    <div className="w-full h-screen pt-24 pb-20">
+    <div className="w-full h-screen pt-16 pb-10 sm:pt-24 sm:pb-20">
       <Spotlight />
       <div className="relative flex min-h-screen w-full flex-col items-center justify-start overflow-hidden">
         <BackgroundRippleEffect />
 
-        <CometCard className='absolute z-20 top-10'>
-          <img src="https://avatars.githubusercontent.com/u/44868357?v=4" alt="avatar" className='w-50 rounded-full cursor-pointer' />
+        <CometCard className="absolute z-20 top-8 sm:top-10">
+          <img
+            src="https://avatars.githubusercontent.com/u/44868357?v=4"
+            alt="avatar"
+            className="w-32 h-32 sm:w-50 sm:h-50 rounded-full cursor-pointer border-4 border-white dark:border-neutral-800 shadow-lg"
+          />
         </CometCard>
 
-        <div className="mt-60 w-full">
-          <TextGenerateEffect words={words} className='relative z-10 text-center' filter={true} duration={1.5} />
-          <p className="relative z-10 mx-auto mt-4 max-w-6xl text-center text-base md:text-xl lg:text-2xl text-neutral-800 dark:text-neutral-500">
+        <div className="mt-40 sm:mt-60 w-full px-4">
+          <TextGenerateEffect
+            words={words}
+            className="relative z-10 text-center text-lg sm:text-2xl lg:text-4xl"
+            filter={true}
+            duration={1.5}
+          />
+          <p className="relative z-10 mx-auto mt-4 max-w-xl sm:max-w-6xl text-center text-sm sm:text-xl lg:text-2xl text-neutral-800 dark:text-neutral-500 px-4 sm:px-0">
             Hi, I'm Shane, a front-end developer specializing in crafting engaging and intuitive web experiences.
           </p>
         </div>
-        <a href="#about" className='mt-8'>
-          <BorderMagicButton
-            title='View My Work'
-            icon={<FaLocationArrow />}
-            position='right'
-          />
+        <a href="#about" className="mt-8 w-full flex justify-center">
+          <div className="flex justify-center w-full max-w-xs">
+            <BorderMagicButton
+              title="View My Work"
+              icon={<FaLocationArrow />}
+              position="right"
+            />
+          </div>
         </a>
       </div>
     </div>

@@ -36,7 +36,7 @@ export const Spotlight = ({
       transition={{
         duration: 1.5,
       }}
-      className="pointer-events-none absolute inset-0 h-full w-full"
+      className="pointer-events-none absolute inset-0 h-full w-full overflow-hidden"
     >
       <motion.div
         animate={{
@@ -48,36 +48,42 @@ export const Spotlight = ({
           repeatType: "reverse",
           ease: "easeInOut",
         }}
-        className="absolute top-0 left-0 w-screen h-screen z-40 pointer-events-none"
+  className="absolute top-0 left-0 w-full h-full z-40 pointer-events-none"
       >
         <div
           style={{
             transform: `translateY(${translateY}px) rotate(-45deg)`,
             background: gradientFirst,
-            width: `${width}px`,
-            height: `${height}px`,
+            width: '100%',
+            maxWidth: '560px',
+            height: '80vh',
+            maxHeight: '1380px',
           }}
-          className={`absolute top-0 left-0`}
+          className="absolute top-0 left-0 sm:w-[560px] sm:h-[1380px] w-full max-w-full h-[60vh]"
         />
 
         <div
           style={{
             transform: "rotate(-45deg) translate(5%, -50%)",
             background: gradientSecond,
-            width: `${smallWidth}px`,
-            height: `${height}px`,
+            width: '100%',
+            maxWidth: '240px',
+            height: '80vh',
+            maxHeight: '1380px',
           }}
-          className={`absolute top-0 left-0 origin-top-left`}
+          className="absolute top-0 left-0 origin-top-left sm:w-[240px] sm:h-[1380px] w-full max-w-full h-[60vh]"
         />
 
         <div
           style={{
             transform: "rotate(-45deg) translate(-180%, -70%)",
             background: gradientThird,
-            width: `${smallWidth}px`,
-            height: `${height}px`,
+            width: '100%',
+            maxWidth: '240px',
+            height: '80vh',
+            maxHeight: '1380px',
           }}
-          className={`absolute top-0 left-0 origin-top-left`}
+          className="absolute top-0 left-0 origin-top-left sm:w-[240px] sm:h-[1380px] w-full max-w-full h-[60vh]"
         />
       </motion.div>
 
@@ -91,36 +97,42 @@ export const Spotlight = ({
           repeatType: "reverse",
           ease: "easeInOut",
         }}
-        className="absolute top-0 right-0 w-screen h-screen z-40 pointer-events-none"
+  className="absolute top-0 right-0 w-full h-full z-40 pointer-events-none"
       >
         <div
           style={{
             transform: `translateY(${translateY}px) rotate(45deg)`,
             background: gradientFirst,
-            width: `${width}px`,
-            height: `${height}px`,
+            width: '100%',
+            maxWidth: '560px',
+            height: '80vh',
+            maxHeight: '1380px',
           }}
-          className={`absolute top-0 right-0`}
+          className="absolute top-0 right-0 sm:w-[560px] sm:h-[1380px] w-full max-w-full h-[60vh]"
         />
 
         <div
           style={{
             transform: "rotate(45deg) translate(-5%, -50%)",
             background: gradientSecond,
-            width: `${smallWidth}px`,
-            height: `${height}px`,
+            width: '100%',
+            maxWidth: '240px',
+            height: '80vh',
+            maxHeight: '1380px',
           }}
-          className={`absolute top-0 right-0 origin-top-right`}
+          className="absolute top-0 right-0 origin-top-right sm:w-[240px] sm:h-[1380px] w-full max-w-full h-[60vh]"
         />
 
         <div
           style={{
             transform: "rotate(45deg) translate(180%, -70%)",
             background: gradientThird,
-            width: `${smallWidth}px`,
-            height: `${height}px`,
+            width: '100%',
+            maxWidth: '240px',
+            height: '80vh',
+            maxHeight: '1380px',
           }}
-          className={`absolute top-0 right-0 origin-top-right`}
+          className="absolute top-0 right-0 origin-top-right sm:w-[240px] sm:h-[1380px] w-full max-w-full h-[60vh]"
         />
       </motion.div>
     </motion.div>

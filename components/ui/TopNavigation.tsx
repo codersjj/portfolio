@@ -30,7 +30,7 @@ const TopNavigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-100 px-6 py-4 h-20">
+    <nav className="fixed top-0 left-0 right-0 z-100 px-2 sm:px-6 py-2 sm:py-4 h-16 sm:h-20 backdrop-blur-lg">
       {/* Glassy Backdrop */}
       <div 
         className="absolute inset-0 backdrop-blur-2xl"
@@ -42,10 +42,10 @@ const TopNavigation = () => {
         {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-900/20 to-gray-800/10"></div> */}
       </div>
       
-      <div className="relative z-10 max-w-7xl mx-auto flex items-center justify-between h-full">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex items-center justify-between pl-4 h-full">
         {/* Logo */}
         <div className="flex items-center">
-          <div className="text-2xl font-bold">
+          <div className="text-lg sm:text-2xl font-bold">
             <span style={{ color: 'var(--color-primary)' }}>Shane</span>
           </div>
         </div>
@@ -56,7 +56,7 @@ const TopNavigation = () => {
             <a
               key={item.name}
               href={item.href}
-              className="transition-colors duration-200 relative group"
+              className="transition-colors duration-200 relative group text-base"
             >
               {item.name}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
@@ -65,7 +65,7 @@ const TopNavigation = () => {
         </div>
 
         {/* Right Icons */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 sm:space-x-4">
           {iconItems.map(({ icon: Icon, style, delay }, index) => (
             <div
               key={index}
@@ -79,7 +79,7 @@ const TopNavigation = () => {
                 transitionDelay: iconsVisible ? `${delay}ms` : '0ms'
               } as React.CSSProperties}
             >
-              <div className="p-2 rounded-lg transition-colors duration-200 group">
+              <div className="p-1 sm:p-2 rounded-lg transition-colors duration-200 group">
                 <Icon 
                   className="" 
                 />
