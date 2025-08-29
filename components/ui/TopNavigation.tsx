@@ -44,11 +44,11 @@ const TopNavigation = () => {
       
       <div className="relative z-10 w-full max-w-7xl mx-auto flex items-center justify-between pl-4 h-full">
         {/* Logo */}
-        <div className="flex items-center">
+        <a href='/' className="flex items-center">
           <div className="text-lg sm:text-2xl font-bold">
             <span style={{ color: 'var(--color-primary)' }}>Shane</span>
           </div>
-        </div>
+        </a>
 
         {/* Navigation Links */}
         <div className="hidden md:flex items-center space-x-8">
