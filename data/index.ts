@@ -16,6 +16,7 @@ export const gridItems = [
     imgClassName: "w-full h-full",
     titleClassName: "justify-end",
     img: "/b1.svg",
+    imgLightMode: '/b1-light.png',
     spareImg: "",
   },
   {

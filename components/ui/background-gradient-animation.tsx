@@ -1,16 +1,17 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 
 export const BackgroundGradientAnimation = ({
-  gradientBackgroundStart = "rgb(108, 0, 162)",
-  gradientBackgroundEnd = "rgb(0, 17, 82)",
-  firstColor = "18, 113, 255",
-  secondColor = "221, 74, 255",
-  thirdColor = "100, 220, 255",
-  fourthColor = "200, 50, 50",
-  fifthColor = "180, 180, 50",
-  pointerColor = "140, 100, 255",
+  gradientBackgroundStart,
+  gradientBackgroundEnd,
+  firstColor,
+  secondColor,
+  thirdColor,
+  fourthColor,
+  fifthColor,
+  pointerColor,
   size = "80%",
   blendingValue = "hard-light",
   children,
@@ -33,13 +34,34 @@ export const BackgroundGradientAnimation = ({
   interactive?: boolean;
   containerClassName?: string;
 }) => {
+  const { resolvedTheme } = useTheme();
   const interactiveRef = useRef<HTMLDivElement>(null);
 
   const [curX, setCurX] = useState(0);
   const [curY, setCurY] = useState(0);
   const [tgX, setTgX] = useState(0);
   const [tgY, setTgY] = useState(0);
+
+  // 根据主题设置默认配色
+  const getThemeColors = () => {
+    const isLight = resolvedTheme === 'light';
+    
+    return {
+      gradientBackgroundStart: gradientBackgroundStart || (isLight ? "rgb(248, 250, 252)" : "rgb(108, 0, 162)"),
+      gradientBackgroundEnd: gradientBackgroundEnd || (isLight ? "rgb(241, 245, 249)" : "rgb(0, 17, 82)"),
+      firstColor: firstColor || (isLight ? "59, 130, 246" : "18, 113, 255"),
+      secondColor: secondColor || (isLight ? "147, 51, 234" : "221, 74, 255"),
+      thirdColor: thirdColor || (isLight ? "34, 197, 94" : "100, 220, 255"),
+      fourthColor: fourthColor || (isLight ? "239, 68, 68" : "200, 50, 50"),
+      fifthColor: fifthColor || (isLight ? "245, 158, 11" : "180, 180, 50"),
+      pointerColor: pointerColor || (isLight ? "99, 102, 241" : "140, 100, 255"),
+    };
+  };
+
   useEffect(() => {
+    const colors = getThemeColors();
+    const { gradientBackgroundStart, gradientBackgroundEnd, firstColor, secondColor, thirdColor, fourthColor, fifthColor, pointerColor } = colors;
+    
     document.body.style.setProperty(
       "--gradient-background-start",
       gradientBackgroundStart
@@ -56,7 +78,7 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
-  }, []);
+  }, [resolvedTheme, gradientBackgroundStart, gradientBackgroundEnd, firstColor, secondColor, thirdColor, fourthColor, fifthColor, pointerColor, size, blendingValue]);
 
   useEffect(() => {
     function move() {

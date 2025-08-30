@@ -26,7 +26,7 @@ export default function ClientLayout({
       attribute="class"
       defaultTheme="system"
       enableSystem
-      disableTransitionOnChange
+      disableTransitionOnChange={true}
     >
       <MuteStoreProvider>
         <TopNavStoreProvider>
