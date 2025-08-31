@@ -3,7 +3,7 @@
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import Hero from "@/components/Hero";
 import Grid from "@/components/Grid";
-import { useState } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { navItems } from "@/data";
 import { useTopNavStore } from "@/providers/top-navigation-store-provider";
 
@@ -19,6 +19,34 @@ export default function Home() {
   const handleHeroLoaded = () => {
     setHeroLoaded(true);
   };
+
+  // 处理页面加载时的 hash 导航
+  useLayoutEffect(() => {
+    if (!heroLoaded || !window.location.hash) return;
+
+    const targetId = window.location.hash.substring(1);
+    const targetElement = document.getElementById(targetId);
+    
+    if (!targetElement) return;
+
+    // 使用 requestAnimationFrame 确保布局完成后执行
+    let rafId: number;
+    
+    const scrollToTarget = () => {
+      rafId = requestAnimationFrame(() => {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      });
+    };
+
+    scrollToTarget();
+
+    // 清理函数
+    return () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }, [heroLoaded]);
 
   return (
     <main className="relative flex flex-col justify-start items-center mx-auto px-4 sm:px-6 min-h-screen">
