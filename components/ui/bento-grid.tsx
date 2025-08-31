@@ -2,6 +2,7 @@ import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./background-gradient-animation";
+import { GridGlobe } from "./GridGlobe";
 
 export const BentoGrid = ({
   className,
@@ -163,6 +164,9 @@ export const BentoGridItem = ({
           <div className="max-w-96 font-sans font-bold text-lg lg:text-3xl text-neutral-600 dark:text-neutral-200">
             {title}
           </div>
+          {id === 2 && (
+            <GridGlobe />
+          )}
         </div>
       </div>
     </div>

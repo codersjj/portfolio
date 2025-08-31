@@ -13,7 +13,6 @@ import { CometCard } from "@/components/ui/comet-card";
 
 const words = 'Transforming Concepts into Seamless User Experiences'
 
-
 interface HeroProps {
   onLoaded?: () => void;
 }
@@ -52,8 +51,8 @@ const Hero = ({ onLoaded }: HeroProps) => {
           <TextGenerateEffect
             words={words}
             className="relative z-10 text-center text-lg sm:text-2xl lg:text-4xl"
-            filter={true}
-            duration={1.5}
+            filter={false}
+            duration={0.5}
           />
           <p className="relative z-10 mx-auto mt-4 max-w-xl sm:max-w-6xl text-center text-sm sm:text-xl lg:text-2xl text-neutral-800 dark:text-neutral-500 px-4 sm:px-0">
             Hi, I'm Shane, a front-end developer specializing in crafting engaging and intuitive web experiences.
