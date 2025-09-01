@@ -1,8 +1,12 @@
 import { useTheme } from "next-themes";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import Lottie from "react-lottie";
+import { IoCopyOutline } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./background-gradient-animation";
 import { GridGlobe } from "./GridGlobe";
+import animationData from '@/data/confetti.json'
+import BorderMagicButton from "./BorderMagicButton";
 
 export const BentoGrid = ({
   className,
@@ -50,6 +54,8 @@ export const BentoGridItem = ({
 }) => {
   const { resolvedTheme } = useTheme();
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // 预加载图片
   useEffect(() => {
@@ -81,6 +87,15 @@ export const BentoGridItem = ({
     });
   }, [img, imgLightMode]);
   
+  // 组件卸载时清理定时器
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+  
   // 获取当前应该显示的图片
   const getCurrentImg = () => {
     if (!imgLightMode) return img;
@@ -88,6 +103,23 @@ export const BentoGridItem = ({
   };
   
   const currentImg = getCurrentImg();
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('shanewestlife@outlook.com')
+
+    // 清除之前的定时器（如果存在）
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    setIsCopied(true);
+    
+    // 3秒后自动重置状态，允许用户重新复制
+    timeoutRef.current = setTimeout(() => {
+      setIsCopied(false);
+      timeoutRef.current = null;
+    }, 2000);
+  }
 
   return (
     <div
@@ -161,7 +193,7 @@ export const BentoGridItem = ({
           <div className="font-sans font-extralight text-xs md:text-sm lg:text-base text-neutral-600 dark:text-neutral-300">
             {description}
           </div>
-          <div className="max-w-96 font-sans font-bold text-lg lg:text-3xl text-neutral-600 dark:text-neutral-200">
+          <div className="max-w-96 font-sans font-bold text-lg lg:text-2xl text-neutral-600 dark:text-neutral-200">
             {title}
           </div>
           {id === 2 && (
@@ -182,6 +214,31 @@ export const BentoGridItem = ({
                     {tech}
                   </span>
                 ))}
+              </div>
+            </div>
+          )}
+          {id === 6 && (
+            <div className="relative">
+              <div className="absolute -bottom-50 right-0">
+                <Lottie
+                  options={{
+                    loop: false,
+                    autoplay: false,
+                    animationData,
+                    rendererSettings: {
+                      preserveAspectRatio: 'xMidYMid slice'
+                    }
+                  }}
+                  isStopped={!isCopied}
+                />
+
+                <BorderMagicButton
+                  title={isCopied ? "Email copied" : "Copy my email"}
+                  icon={<IoCopyOutline />}
+                  position="left"
+                  className="-top-32"
+                  handleClick={handleCopyEmail}
+                />
               </div>
             </div>
           )}
