@@ -92,7 +92,7 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "relative group/bento shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-3xl border border-neutral-200 bg-white overflow-hidden transition duration-200 hover:shadow-xl dark:border-white/[0.2] bg-[linear-gradient(90deg,#FAFAFA_0%,#FCFCFC_100%)] dark:bg-[linear-gradient(90deg,rgba(18,18,28,1)_0%,rgba(3,3,3,1)_100%)] dark:shadow-none",
+        "relative group/bento shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-3xl border border-black/[0.1] bg-white overflow-hidden transition duration-200 hover:shadow-xl dark:border-white/[0.2] bg-[linear-gradient(90deg,#FAFAFA_0%,#FCFCFC_100%)] dark:bg-[linear-gradient(90deg,rgba(18,18,28,1)_0%,rgba(3,3,3,1)_100%)] dark:shadow-none",
         className,
       )}
     >
@@ -166,6 +166,24 @@ export const BentoGridItem = ({
           </div>
           {id === 2 && (
             <GridGlobe />
+          )}
+          {id === 3 && (
+            <div className="absolute right-0 flex gap-1 lg:gap-5 w-fit">
+              <div className="relative -top-4 flex flex-col gap-3 lg:gap-8">
+                {["JavaScript", "TypeScript", "React"].map((tech) => (
+                  <span key={tech} className="bg-[#f5f7ff] dark:bg-[#101321] text-center text-xs md:text-sm lg:text-base font-medium p-2 lg:p-4 rounded">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <div className="relative -bottom-4 flex flex-col gap-3 lg:gap-8">
+                {["Vue", "Node.js", "Next.js"].map((tech) => (
+                  <span key={tech} className="bg-[#f5f7ff] dark:bg-[#101321] text-center text-xs md:text-sm lg:text-base font-medium p-2 lg:p-4 rounded">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       </div>

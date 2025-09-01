@@ -25,7 +25,7 @@ export const gridItems = [
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
-    titleClassName: "justify-start text-center",
+    titleClassName: "justify-start items-center text-center",
     img: "",
     spareImg: "",
   },
@@ -52,7 +52,7 @@ export const gridItems = [
 
   {
     id: 5,
-    title: "Currently building a JS Animation library",
+    title: "Currently building a Web3 knowledge-sharing rewards platform",
     description: "The Inside Scoop",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
