@@ -77,11 +77,35 @@ export const FloatingNav = ({
         )}
       >
         {navItems.map((navItem: any, idx: number) => (
-          <a
+          <button
             key={`link=${idx}`}
-            href={navItem.link}
+            onClick={(e) => {
+              e.preventDefault();
+              
+              // 处理根路径
+              if (navItem.link === '/') {
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
+                return;
+              }
+              
+              // 处理锚点链接
+              if (navItem.link.startsWith('#')) {
+                const targetId = navItem.link.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                  targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }
+              }
+            }}
             className={cn(
-              "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+              "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500 cursor-pointer"
             )}
           >
             {navItem.icon ? (
@@ -94,7 +118,7 @@ export const FloatingNav = ({
             ) : (
               <span className="block text-xs sm:text-sm">{navItem.name}</span>
             )}
-          </a>
+          </button>
         ))}
         {/* <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
           <span>Login</span>
