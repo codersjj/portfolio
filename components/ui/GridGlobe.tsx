@@ -409,7 +409,7 @@ export function GridGlobe() {
   ];
 
   return (
-    <div className="absolute -left-5 top-40 md:top-28 flex items-center justify-center w-full h-full md:h-auto">
+    <div className="absolute -left-5 top-40 md:top-10 lg:top-28 flex items-center justify-center w-full h-full md:h-auto">
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden px-4 h-96">
         <div className="absolute w-full h-72 md:h-full z-10">
           <World data={sampleArcs} globeConfig={globeConfig} />
