@@ -1,9 +1,10 @@
 'use client'
 
+import { useState, useEffect, useLayoutEffect } from "react";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import Hero from "@/components/Hero";
 import Grid from "@/components/Grid";
-import { useState, useEffect, useLayoutEffect } from "react";
+import RecentProjects from "@/components/RecentProjects";
 import { navItems } from "@/data";
 import { useTopNavStore } from "@/providers/top-navigation-store-provider";
 
@@ -54,6 +55,7 @@ export default function Home() {
         <FloatingNav navItems={navItems} onVisibleChange={handleVisibleChange} />
         <Hero onLoaded={handleHeroLoaded} />
         {heroLoaded && <Grid />}
+        <RecentProjects />
       </div>
     </main>
   );
