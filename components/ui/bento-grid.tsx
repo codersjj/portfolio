@@ -38,6 +38,7 @@ export const BentoGridItem = ({
   imgLightMode,
   imgClassName,
   spareImg,
+  spareImgLightMode,
   titleClassName
 }: {
   className?: string;
@@ -50,6 +51,7 @@ export const BentoGridItem = ({
   imgLightMode?: string;
   imgClassName?: string;
   spareImg?: string;
+  spareImgLightMode?: string;
   titleClassName?: string;
 }) => {
   const { resolvedTheme } = useTheme();
@@ -102,7 +104,14 @@ export const BentoGridItem = ({
     return resolvedTheme === 'light' ? imgLightMode : img;
   };
   
+  // 获取当前应该显示的 spareImg
+  const getCurrentSpareImg = () => {
+    if (!spareImgLightMode) return spareImg;
+    return resolvedTheme === 'light' ? spareImgLightMode : spareImg;
+  };
+  
   const currentImg = getCurrentImg();
+  const currentSpareImg = getCurrentSpareImg();
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('shanewestlife@outlook.com')
@@ -175,13 +184,37 @@ export const BentoGridItem = ({
             )} />
           )}
         </div>
-        <div className={`absolute right-0 -bottom-5 ${id === 5 && 'w-full opacity-80'}`}>
-          {spareImg && (
-            <img
-              src={spareImg}
-              alt={spareImg}
-              className="w-full h-full object-cover object-center"
-            />
+        <div className={`absolute right-0 -bottom-5 ${id === 4 && 'w-[208px] h-[96]'} ${id === 5 && 'w-full opacity-80'}`}>
+          {(spareImg || spareImgLightMode) && (
+            <>
+              {/* 如果有双 spareImg 模式，显示两张图片用于平滑切换 */}
+              {spareImgLightMode && spareImg && spareImgLightMode !== spareImg ? (
+                <>
+                  <img
+                    src={spareImg}
+                    alt={spareImg}
+                    className={cn(
+                      "w-full h-full object-cover object-center transition-opacity duration-1300 ease-in-out absolute inset-0",
+                      resolvedTheme === 'light' ? 'opacity-0' : 'opacity-100'
+                    )}
+                  />
+                  <img
+                    src={spareImgLightMode}
+                    alt={spareImgLightMode}
+                    className={cn(
+                      "w-full h-full object-cover object-center transition-opacity duration-1300 ease-in-out absolute inset-0",
+                      resolvedTheme === 'light' ? 'opacity-100' : 'opacity-0'
+                    )}
+                  />
+                </>
+              ) : currentSpareImg && (
+                <img
+                  src={currentSpareImg}
+                  alt={currentSpareImg}
+                  className="w-full h-full object-cover object-center transition-opacity duration-300 ease-in-out"
+                />
+              )}
+            </>
           )}
         </div>
         {id === 6 && (

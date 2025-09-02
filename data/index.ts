@@ -48,6 +48,7 @@ export const gridItems = [
     titleClassName: "justify-start",
     img: "/grid.svg",
     spareImg: "/b4.svg",
+    spareImgLightMode: "/b4-light.svg",
   },
 
   {
