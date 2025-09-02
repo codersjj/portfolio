@@ -54,8 +54,12 @@ export default function Home() {
       <div className="max-w-7xl mx-auto w-full">
         <FloatingNav navItems={navItems} onVisibleChange={handleVisibleChange} />
         <Hero onLoaded={handleHeroLoaded} />
-        {heroLoaded && <Grid />}
-        <RecentProjects />
+        {heroLoaded && (
+          <>
+            <Grid />
+            <RecentProjects />
+          </>
+        )}
       </div>
     </main>
   );
