@@ -44,13 +44,19 @@ const RecentProjects = () => {
               <div className='flex justify-between items-center'>
                 <ul>
                   {iconLists.map((icon, idx) => {
-                    // 简化逻辑：直接处理图标显示
+                    // 使用 mounted 确保 hydration 一致性
                     let displayIcon: string
                     
                     if (Array.isArray(icon)) {
                       // 对于有多个版本的图标（如 Next.js），根据主题选择
-                      // Light mode 用深色图标，Dark mode 用浅色图标
-                      displayIcon = resolvedTheme === 'light' ? icon[1] : icon[0]
+                      // 在 mounted 之前使用默认值，避免 hydration 不匹配
+                      if (mounted && resolvedTheme) {
+                        // Light mode 用深色图标，Dark mode 用浅色图标
+                        displayIcon = resolvedTheme === 'light' ? icon[1] : icon[0]
+                      } else {
+                        // 服务端渲染和初始客户端渲染使用默认值（深色主题的图标）
+                        displayIcon = icon[0] // next.svg (白色图标，适合深色背景)
+                      }
                     } else {
                       // 对于单一图标，直接使用
                       displayIcon = icon
@@ -69,7 +75,7 @@ const RecentProjects = () => {
                           src={displayIcon} 
                           alt={displayIcon} 
                           className={`w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 object-contain ${
-                            !Array.isArray(icon) ? 'dark:invert' : ''
+                            !Array.isArray(icon) && mounted ? 'dark:invert' : ''
                           }`}
                         />
                       </li>
