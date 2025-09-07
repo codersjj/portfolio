@@ -74,9 +74,7 @@ const RecentProjects = () => {
                         <img 
                           src={displayIcon} 
                           alt={displayIcon} 
-                          className={`w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 object-contain ${
-                            !Array.isArray(icon) && mounted ? 'dark:invert' : ''
-                          }`}
+                          className={`w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 object-contain`}
                         />
                       </li>
                     )
