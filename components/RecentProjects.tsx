@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { projects } from '@/data'
 import { PinContainer } from './ui/3d-pin'
+import RotatedImage from './ui/RotatedImage'
 
 const RecentProjects = () => {
   const { resolvedTheme } = useTheme()
@@ -19,7 +20,7 @@ const RecentProjects = () => {
         A small selection of {' '}
         <span className='text-purple-500 dark:text-purple-300'>recent projects</span>
       </h2>
-      <div className='flex flex-wrap justify-center items-center gap-x-24 gap-y-4 sm:gap-y-8 p-4'>
+      <div className='flex flex-wrap justify-center items-center gap-x-24 gap-y-12 p-4'>
         {projects.map(({ id, title, des, img, iconLists, link }) => (
           <div key={id} className='flex justify-center items-center w-[80vw] sm:w-142.5 h-[28rem] sm:h-[35rem] md:h-[40rem]'>
             <PinContainer
@@ -31,10 +32,10 @@ const RecentProjects = () => {
                 <div className='flex justify-center items-end'>
                   <img src="/bg.png" alt="background img" />
                 </div>
-                <img
-                  alt={title}
+                <RotatedImage
                   src={img}
-                  className='absolute z-10 bottom-0 left-1/2 -translate-x-1/2'
+                  alt={title}
+                  className='absolute z-10 -bottom-8 left-1/2 -translate-x-1/2 w-[85%]'
                 />
               </div>
               <h3 className='text-lg md:text-xl lg:text-2xl font-semibold line-clamp-1'>{title}</h3>
