@@ -28,7 +28,7 @@ const RecentProjects = () => {
               href={link}
               className='flex flex-col gap-2 sm:gap-4'
             >
-              <div className='relative flex flex-col gap-5 w-[80vw] sm:w-142.5 min-h-[28vh] sm:h-[40vh] bg-[#13162d] rounded-3xl overflow-hidden'>
+              <div className='relative flex flex-col gap-5 w-[80vw] sm:w-142.5 min-h-[28vh] sm:h-[40vh] dark:bg-[#13162d] rounded-3xl overflow-hidden'>
                 <div className='flex justify-center items-end'>
                   <img src="/bg.png" alt="background img" />
                 </div>
