@@ -15,7 +15,7 @@ const Experience = () => {
             key={id}
             borderRadius='1.5rem'
             duration={Math.floor(Math.random() * 8000) + 10000}
-            className='flex justify-center items-center gap-3 md:gap-6 p-4 md:p-8 cursor-pointer'
+            className='flex justify-start items-center gap-3 md:gap-6 p-4 md:p-8 cursor-pointer'
           >
             <img src={thumbnail} alt="thumbnail" className='w-16 md:w-20 lg:w-32' />
             <div className='flex flex-col gap-2 md:gap-4 text-left'>
