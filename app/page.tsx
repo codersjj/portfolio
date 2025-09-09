@@ -7,6 +7,7 @@ import Grid from "@/components/Grid";
 import RecentProjects from "@/components/RecentProjects";
 import Experience from "@/components/Experience";
 import Approach from "@/components/Approach";
+import Footer from "@/components/Footer";
 import { navItems } from "@/data";
 import { useTopNavStore } from "@/providers/top-navigation-store-provider";
 
@@ -62,6 +63,7 @@ export default function Home() {
             <RecentProjects />
             <Experience />
             <Approach />
+            <Footer />
           </>
         )}
       </div>
