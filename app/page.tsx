@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import Grid from "@/components/Grid";
 import RecentProjects from "@/components/RecentProjects";
 import Experience from "@/components/Experience";
+import Approach from "@/components/Approach";
 import { navItems } from "@/data";
 import { useTopNavStore } from "@/providers/top-navigation-store-provider";
 
@@ -60,6 +61,7 @@ export default function Home() {
             <Grid />
             <RecentProjects />
             <Experience />
+            <Approach />
           </>
         )}
       </div>
