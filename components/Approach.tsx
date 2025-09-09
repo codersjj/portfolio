@@ -2,6 +2,8 @@ import React from 'react'
 import { AnimatePresence, motion } from "motion/react";
 import { CanvasRevealEffect } from './ui/canvas-reveal-effect';
 import BorderMagicButton from './ui/BorderMagicButton';
+import { useHover, useTouch } from '@/hooks/useTouch';
+import { useDebounce } from '@/hooks/useDebounce';
 
 const Approach = () => {
   return (
@@ -28,12 +30,12 @@ const Approach = () => {
         >
           <CanvasRevealEffect
             animationSpeed={3}
-            containerClassName="bg-black"
+            containerClassName="bg-pink-900"
             colors={[
-              [236, 72, 153],
-              [232, 121, 249],
+              [255, 166, 158],
+              [221, 255, 247],
             ]}
-            dotSize={2}
+            dotSize={4}
           />
           {/* Radial gradient for the cute fade */}
           <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
@@ -65,12 +67,56 @@ const Card = ({
   icon: React.ReactNode;
   children?: React.ReactNode;
 }) => {
-  const [hovered, setHovered] = React.useState(false);
+  const [touched, setTouched] = React.useState(false);
+  const [isTransitioning, setIsTransitioning] = React.useState(false);
+  const { isHovered, handleMouseEnter, handleMouseLeave, isTouchDevice } = useHover();
+  
+  // 使用安全的 debounce hook 来防止内存泄漏
+  const debouncedSetTransitioning = useDebounce(() => {
+    setIsTransitioning(false);
+  }, 200);
+  
+  const handleInteraction = React.useCallback(() => {
+    if (!isTransitioning) {
+      setTouched(!touched);
+      setIsTransitioning(true);
+      debouncedSetTransitioning();
+    }
+  }, [touched, isTransitioning, debouncedSetTransitioning]);
+  
+  const handleClick = (e: React.MouseEvent) => {
+    if (isTouchDevice) {
+      // 在移动设备上，onClick 事件就足够了
+      // 它会在 touchend 后自动触发，不需要额外处理
+      // 这样避免了被动事件监听器的 preventDefault 警告
+      handleInteraction();
+    }
+  };
+  
+  // 注意：不使用 onTouchStart，因为现代浏览器将其设为被动事件
+  // 使用 onClick 更简洁且兼容性更好
+  
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if ((e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      if (isTouchDevice) {
+        handleInteraction();
+      }
+    }
+  };
+  
+  const isActive = isTouchDevice ? touched : isHovered;
+  
   return (
     <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 relative h-[30rem] cursor-pointer"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      className="approach-card border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2] max-w-sm w-full mx-auto p-4 relative h-[30rem] cursor-pointer transition-all duration-200 select-none"
+      role="button"
+      tabIndex={0}
+      aria-label={`${title} - ${isTouchDevice ? 'Tap to view details' : 'Hover to view details'}`}
     >
       <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
       <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
@@ -78,10 +124,11 @@ const Card = ({
       <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
 
       <AnimatePresence>
-        {hovered && (
+        {isActive && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="h-full w-full absolute inset-0"
           >
             {children}
@@ -93,19 +140,31 @@ const Card = ({
         <div
           // add this for making it center
           // absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
-          className="text-center group-hover/canvas-card:-translate-y-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] group-hover/canvas-card:opacity-0 transition duration-200 min-w-40 mx-auto flex items-center justify-center"
+          className={`text-center transition duration-200 min-w-40 mx-auto flex items-center justify-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ${
+            isActive 
+              ? '-translate-y-4 opacity-0' 
+              : 'translate-y-0 opacity-100'
+          }`}
         >
           {icon}
         </div>
         <h2
           // change text-3xl, add text-center
-          className="dark:text-white text-center text-3xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-black mt-4 font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200"
+          className={`text-center text-3xl relative z-10 text-black dark:text-white mt-4 font-bold transition duration-200 ${
+            isActive 
+              ? 'opacity-100 text-white -translate-y-2' 
+              : 'opacity-0 translate-y-0'
+          }`}
         >
           {title}
         </h2>
         {/* add this one for the description */}
         <p
-          className="text-sm opacity-0 group-hover/canvas-card:opacity-100 relative z-10 mt-4 group-hover/canvas-card:text-white text-center group-hover/canvas-card:-translate-y-2 transition duration-200 dark:text-[#E4ECFF]"
+          className={`text-sm relative z-10 mt-4 text-center transition duration-200 dark:text-[#E4ECFF] ${
+            isActive 
+              ? 'opacity-100 text-white -translate-y-2' 
+              : 'opacity-0 translate-y-0'
+          }`}
         >
           {description}
         </p>

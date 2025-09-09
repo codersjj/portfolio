@@ -184,3 +184,55 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* 移动端hover效果优化 */
+@layer utilities {
+  /* 只在支持hover的设备上应用hover效果 */
+  @media (hover: hover) and (pointer: fine) {
+    .approach-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    }
+  }
+  
+  /* 移动端触摸优化 */
+  @media (hover: none) and (pointer: coarse) {
+    .approach-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .approach-card:active {
+      transform: scale(0.98);
+    }
+    
+    /* 移动端增加触摸反馈 */
+    .approach-card:focus {
+      outline: 2px solid rgb(168 85 247 / 0.8);
+      outline-offset: 2px;
+    }
+  }
+  
+  /* 确保触摸设备上的按钮有足够的触摸目标 */
+  @media (pointer: coarse) {
+    .approach-card {
+      min-height: 44px; /* iOS建议的最小触摸目标 */
+    }
+  }
+  
+  /* 减少动画对于偏好减少动画的用户 */
+  @media (prefers-reduced-motion: reduce) {
+    .approach-card,
+    .approach-card * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* 高对比度模式支持 */
+  @media (prefers-contrast: high) {
+    .approach-card {
+      border-width: 2px;
+    }
+  }
+}
