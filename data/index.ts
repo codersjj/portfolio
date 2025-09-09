@@ -135,13 +135,16 @@ export const socialMedia = [
   {
     id: 1,
     img: "/git.svg",
+    link: "https://github.com/codersjj"
   },
   {
     id: 2,
     img: "/twit.svg",
+    link: "https://x.com/codersjj"
   },
   {
     id: 3,
     img: "/link.svg",
+    link: "https://www.linkedin.com/in/junjie-sha-778109357/"
   },
 ];

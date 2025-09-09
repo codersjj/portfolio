@@ -21,9 +21,11 @@ const Footer = () => {
       <div className='mt-10 flex flex-col md:flex-row justify-between items-center gap-4'>
         <span>Copyright &#169; 2025 Shane</span>
         <ul className='flex justify-center items-center gap-4'>
-          {socialMedia.map(({ id, img }) => (
+          {socialMedia.map(({ id, img, link }) => (
             <li key={id} className='w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-zinc-700 dark:bg-zinc-800/75 rounded-lg border border-black-300'>
-              <img src={img} alt={img} width={20} height={20} />
+              <a href={link} target='_blank' className='w-full h-full flex justify-center items-center hover:scale-110 transition-transform duration-200'>
+                <img src={img} alt={img} width={20} height={20} />
+              </a>
             </li>
           ))}
         </ul>
