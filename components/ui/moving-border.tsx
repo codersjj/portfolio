@@ -22,11 +22,13 @@ export function Button({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   as?: any;
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
   className?: string;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   [key: string]: any;
 }) {
   return (
@@ -38,7 +40,8 @@ export function Button({
       style={{
         borderRadius: borderRadius,
       }}
-      {...otherProps}
+      /* eslint-disable  @typescript-eslint/no-explicit-any */
+      {...(otherProps as any)}
     >
       <div
         className="absolute inset-0"
@@ -80,9 +83,9 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
-  const pathRef = useRef<any>(null);
+  const pathRef = useRef<SVGRectElement | null>(null);
   const progress = useMotionValue<number>(0);
 
   useAnimationFrame((time) => {

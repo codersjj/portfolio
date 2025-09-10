@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaLocationArrow } from 'react-icons/fa6';
 import { Spotlight } from './ui/spotlight-new';
-import ModeToggleButton from './ui/ModeToggleButton';
-import VolumeToggleIcon from './ui/VolumeToggleIcon';
 import { BackgroundRippleEffect } from './ui/background-ripple-effect';
 import { TextGenerateEffect } from './ui/text-generate-effect';
 import BorderMagicButton from './ui/BorderMagicButton';
@@ -26,7 +24,7 @@ const Hero = ({ onLoaded }: HeroProps) => {
     if (onLoaded) {
       onLoaded();
     }
-  }, [])
+  }, [onLoaded])
 
   if (!mounted) {
     // Avoid rendering during SSR to prevent hydration mismatch
@@ -55,7 +53,7 @@ const Hero = ({ onLoaded }: HeroProps) => {
             duration={0.5}
           />
           <p className="relative z-10 mx-auto mt-4 max-w-xl sm:max-w-6xl text-center text-sm sm:text-xl lg:text-2xl text-neutral-800 dark:text-neutral-500 px-4 sm:px-0">
-            Hi, I'm Shane, a front-end developer specializing in crafting engaging and intuitive web experiences.
+            Hi, I&apos;m Shane, a front-end developer specializing in crafting engaging and intuitive web experiences.
           </p>
         </div>
         <a href="#about" className="mt-8 w-full flex justify-center">

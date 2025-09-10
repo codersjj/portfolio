@@ -31,8 +31,6 @@ export const BentoGridItem = ({
   className,
   title,
   description,
-  header,
-  icon,
   id,
   img,
   imgLightMode,

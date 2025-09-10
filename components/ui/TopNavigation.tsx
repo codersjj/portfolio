@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { Search, Volume2, Moon, Rss } from 'lucide-react';
+import Link from 'next/link';
 import VolumeToggleIcon from './VolumeToggleIcon';
 import ModeToggleButton from './ModeToggleButton';
 
@@ -44,11 +44,11 @@ const TopNavigation = () => {
       
       <div className="relative z-10 w-full max-w-7xl mx-auto flex items-center justify-between pl-4 h-full">
         {/* Logo */}
-        <a href='/' className="flex items-center">
+        <Link href='/' className="flex items-center">
           <div className="text-lg sm:text-2xl font-bold">
             <span style={{ color: 'var(--color-primary)' }}>Shane</span>
           </div>
-        </a>
+        </Link>
 
         {/* Navigation Links */}
         <div className="hidden sm:flex items-center space-x-8">

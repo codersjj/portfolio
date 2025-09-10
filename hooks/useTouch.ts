@@ -8,7 +8,7 @@ export function useTouch() {
       const hasTouch = (
         'ontouchstart' in window ||
         navigator.maxTouchPoints > 0 ||
-        // @ts-ignore - IE specific
+        // @ts-expect-error - IE specific
         navigator.msMaxTouchPoints > 0
       );
       

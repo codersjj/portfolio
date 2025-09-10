@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import Hero from "@/components/Hero";
 import Grid from "@/components/Grid";

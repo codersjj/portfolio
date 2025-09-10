@@ -2,7 +2,7 @@ import React from 'react'
 import { AnimatePresence, motion } from "motion/react";
 import { CanvasRevealEffect } from './ui/canvas-reveal-effect';
 import BorderMagicButton from './ui/BorderMagicButton';
-import { useHover, useTouch } from '@/hooks/useTouch';
+import { useHover } from '@/hooks/useTouch';
 import { useDebounce } from '@/hooks/useDebounce';
 
 const Approach = () => {
@@ -84,7 +84,7 @@ const Card = ({
     }
   }, [touched, isTransitioning, debouncedSetTransitioning]);
   
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = () => {
     if (isTouchDevice) {
       // 在移动设备上，onClick 事件就足够了
       // 它会在 touchend 后自动触发，不需要额外处理
@@ -183,7 +183,7 @@ const PhaseIcon = ({ order }: { order: string }) => {
   );
 };
 
-const Icon = ({ className, ...rest }: any) => {
+const Icon = ({ className, ...rest }: { className: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

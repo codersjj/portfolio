@@ -6,7 +6,7 @@ import { useCallback, useRef, useEffect, useState } from 'react';
  * @param delay 延迟时间（毫秒）
  * @returns 防抖后的函数
  */
-export function useDebounce<T extends (...args: any[]) => any>(
+export function useDebounce<T extends (...args: unknown[]) => unknown>(
   callback: T,
   delay: number
 ): T {
@@ -33,7 +33,7 @@ export function useDebounce<T extends (...args: any[]) => any>(
 
   // 防抖函数
   const debouncedCallback = useCallback(
-    ((...args: any[]) => {
+    ((...args: Parameters<T>) => {
       cleanup();
       timeoutRef.current = setTimeout(() => {
         callbackRef.current(...args);

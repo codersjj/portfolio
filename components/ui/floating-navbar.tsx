@@ -1,5 +1,5 @@
 "use client";
-import React, { JSX, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   motion,
@@ -10,17 +10,18 @@ import {
 import { cn } from "@/lib/utils";
 import { type IconType } from "react-icons";
 
+type NavItem = {
+  name: string;
+  link: string;
+  icon?: IconType;
+}
 
 export const FloatingNav = ({
   navItems,
   className,
   onVisibleChange,
 }: {
-  navItems: {
-    name: string;
-    link: string;
-    icon?: IconType;
-  }[];
+  navItems: NavItem[];
   className?: string;
   onVisibleChange?: (visible: boolean) => void;
 }) => {
@@ -30,7 +31,7 @@ export const FloatingNav = ({
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     if (typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
+      const direction = current! - scrollYProgress.getPrevious()!;
       let newVisible: boolean;
       if (scrollYProgress.get() < 0.05) {
         newVisible = false;
@@ -77,7 +78,7 @@ export const FloatingNav = ({
           className
         )}
       >
-        {navItems.map((navItem: any, idx: number) => (
+        {navItems.map((navItem: NavItem, idx: number) => (
           <Link
             key={`link=${idx}`}
             href={navItem.link}

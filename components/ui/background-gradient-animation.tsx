@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 
 export const BackgroundGradientAnimation = ({
@@ -43,7 +43,7 @@ export const BackgroundGradientAnimation = ({
   const [tgY, setTgY] = useState(0);
 
   // 根据主题设置默认配色
-  const getThemeColors = () => {
+  const getThemeColors = useCallback(() => {
     const isLight = resolvedTheme === 'light';
     
     return {
@@ -56,7 +56,7 @@ export const BackgroundGradientAnimation = ({
       fifthColor: fifthColor || (isLight ? "245, 158, 11" : "180, 180, 50"),
       pointerColor: pointerColor || (isLight ? "99, 102, 241" : "140, 100, 255"),
     };
-  };
+  }, [resolvedTheme, gradientBackgroundStart, gradientBackgroundEnd, firstColor, secondColor, thirdColor, fourthColor, fifthColor, pointerColor]);
 
   useEffect(() => {
     const colors = getThemeColors();
@@ -78,7 +78,7 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
-  }, [resolvedTheme, gradientBackgroundStart, gradientBackgroundEnd, firstColor, secondColor, thirdColor, fourthColor, fifthColor, pointerColor, size, blendingValue]);
+  }, [getThemeColors, size, blendingValue]);
 
   useEffect(() => {
     function move() {
@@ -93,7 +93,7 @@ export const BackgroundGradientAnimation = ({
     }
 
     move();
-  }, [tgX, tgY]);
+  }, [curX, curY, tgX, tgY]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (interactiveRef.current) {
