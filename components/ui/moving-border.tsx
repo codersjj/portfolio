@@ -9,6 +9,7 @@ import {
 } from "motion/react";
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
+import { useSupportsBackdropFilter } from '@/hooks/useSupportsBackdropFilter'
 
 export function Button({
   borderRadius = "1.75rem",
@@ -31,6 +32,8 @@ export function Button({
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   [key: string]: any;
 }) {
+  const supports = useSupportsBackdropFilter()
+
   return (
     <Component
       className={cn(
@@ -59,7 +62,11 @@ export function Button({
 
       <div
         className={cn(
-          "relative dark:bg-slate-900/[0.1] border backdrop-blur-xl flex items-center justify-center w-full h-full text-sm antialiased flex-1 text-black dark:text-white border-neutral-200 dark:border-slate-800",
+          "relative border",
+          "flex items-center justify-center w-full h-full text-sm antialiased flex-1 text-black dark:text-white border-neutral-200 dark:border-slate-800",
+          !supports
+            ? 'dark:bg-slate-900/[0.1] backdrop-blur-xl'
+            : 'dark:bg-slate-900/[0.9]',
           className,
         )}
         style={{
