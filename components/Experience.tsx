@@ -15,12 +15,32 @@ const Experience = () => {
             key={id}
             borderRadius='1.5rem'
             duration={Math.floor(Math.random() * 8000) + 10000}
-            className='flex justify-start items-center gap-3 md:gap-6 p-4 md:p-8 cursor-pointer'
+            // style={{
+            //   //   add these two
+            //   //   you can generate the color from here https://cssgradient.io/
+            //   background: "rgb(4,7,29)",
+            //   backgroundImage:
+            //     "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+            //   // add this border radius to make it more rounded so that the moving border is more realistic
+            //   borderRadius: `calc(1.75rem* 0.96)`,
+            // }}
+            // remove bg-white dark:bg-slate-900
+            className="flex-1 text-black dark:text-white border-neutral-200 dark:border-slate-800"
           >
-            <img src={thumbnail} alt="thumbnail" className='w-16 md:w-20 lg:w-32' />
-            <div className='flex flex-col gap-2 md:gap-4 text-left'>
-              <h4 className='text-lg md:text-xl font-bold'>{title}</h4>
-              <p className='text-sm md:text-base text-gray-500 dark:text-gray-400 font-semibold'>{desc}</p>
+            <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
+              <img
+                src={thumbnail}
+                alt={thumbnail}
+                className="lg:w-32 md:w-20 w-16"
+              />
+              <div className="lg:ms-5">
+                <h1 className="text-start text-xl md:text-2xl font-bold">
+                  {title}
+                </h1>
+                <p className="text-start mt-3 font-semibold text-gray-500 dark:text-gray-400 ">
+                  {desc}
+                </p>
+              </div>
             </div>
           </Button>
         ))}
