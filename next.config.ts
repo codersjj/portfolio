@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  basePath: '/portfolio',
+  basePath: process.env.VERCEL_ENV ? '' : '/portfolio',
 };
 
 export default withSentryConfig(nextConfig, {
