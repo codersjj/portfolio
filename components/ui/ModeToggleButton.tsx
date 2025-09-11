@@ -33,7 +33,7 @@ export default function ModeToggleButton({ className = '' }: { className?: strin
 
   // 初始化主题
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('theme') ?? 'dark';
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
