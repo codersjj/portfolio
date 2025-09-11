@@ -1,9 +1,11 @@
 import {withSentryConfig} from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
+const isGitHubPages = process.env.NODE_ENV === 'production' && !process.env.VERCEL_ENV
+
 const nextConfig: NextConfig = {
   /* config options here */
-  basePath: process.env.VERCEL_ENV ? '' : '/portfolio',
+  basePath: isGitHubPages ? '/portfolio' : '',
 };
 
 export default withSentryConfig(nextConfig, {
