@@ -34,7 +34,7 @@ export function Button({
   return (
     <Component
       className={cn(
-        "relative md:col-span-2 overflow-hidden bg-transparent p-[2px] text-xl",
+        "bg-transparent relative text-xl p-[1px] overflow-hidden md:col-span-2 md:row-span-1",
         containerClassName,
       )}
       style={{
@@ -59,9 +59,7 @@ export function Button({
 
       <div
         className={cn(
-          "relative border",
-          "flex items-center justify-center w-full h-full text-sm antialiased flex-1 text-black dark:text-white border-neutral-200 dark:border-slate-800",
-          'dark:bg-slate-900/[0.1] backdrop-blur-xl',
+          "relative dark:bg-slate-900/[0.1] border dark:border-slate-800 backdrop-blur-xl dark:text-white flex items-center justify-center w-full h-full text-sm antialiased",
           className,
         )}
         style={{
