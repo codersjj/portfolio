@@ -26,6 +26,18 @@ export function useSupportsBackdropFilter() {
     if (isMobile) {
       // 移动端需要更细致的检测
       const browserInfo = detectMobileBrowser();
+      
+      // 添加调试信息（开发环境）
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔍 Backdrop Filter Detection:', {
+          userAgent: browserInfo.userAgent,
+          isProblematicBrowser: browserInfo.isProblematicBrowser,
+          isGoodBrowser: browserInfo.isGoodBrowser,
+          cssSupported,
+          finalDecision: !browserInfo.isProblematicBrowser
+        });
+      }
+      
       if (browserInfo.isProblematicBrowser) {
         setSupports(false);
         return;
@@ -41,41 +53,52 @@ export function useSupportsBackdropFilter() {
     function detectMobileBrowser() {
       const userAgent = navigator.userAgent;
       
-      // 检测有问题的移动浏览器
-      const problematicBrowsers = [
-        // Android 系统 WebView (通常版本较老)
-        /Android.*Version\/[0-9]\.[0-9].*Chrome\/[0-9]{2}\./,
-        // 老版本的 Samsung Internet
-        /SamsungBrowser\/[0-9]\./,
-        // 一些国产浏览器的 WebView
-        /Quark|UC|QQ|Sogou|Baidu|360/i,
-        // 老版本的 Safari (iOS < 14)
-        /iPhone.*OS (1[0-3]|[0-9])_.*Safari/,
-        // 微信内置浏览器
-        /MicroMessenger/i,
-        // 一些 App 内嵌 WebView
-        /NewsArticle|Line|KAKAOTALK|Instagram|FBAV|Twitter/i
-      ];
+      // 更严格的移动端浏览器检测
+      // 对于移动端，我们默认假设不支持，除非明确是已知的好浏览器
       
-      const isProblematicBrowser = problematicBrowsers.some(regex => regex.test(userAgent));
-      
-      // 检测已知支持良好的浏览器
-      const goodBrowsers = [
-        // 现代 Chrome/Chromium
+      // 检测已知支持良好的浏览器（白名单方式）
+      const goodMobileBrowsers = [
+        // 现代 Chrome/Chromium (版本 80+)
         /Chrome\/([8-9][0-9]|[1-9][0-9]{2})/,
-        // 现代 Firefox
+        // 现代 Firefox (版本 70+)
         /Firefox\/([7-9][0-9]|[1-9][0-9]{2})/,
         // 现代 Safari (iOS 14+)
-        /iPhone.*OS (1[4-9]|[2-9][0-9])_.*Safari/,
-        // Edge
-        /Edg\//
+        /iPhone.*OS (1[4-9]|[2-9][0-9])_.*Version\/1[4-9]\./,
+        // 现代 Edge
+        /Edg\/([8-9][0-9]|[1-9][0-9]{2})/,
+        // 新版本 Samsung Internet (版本 10+)
+        /SamsungBrowser\/(1[0-9]|[2-9][0-9])/
       ];
       
-      const isGoodBrowser = goodBrowsers.some(regex => regex.test(userAgent));
+      const isGoodBrowser = goodMobileBrowsers.some(regex => regex.test(userAgent));
+      
+      // 如果不是已知的好浏览器，就认为有问题
+      const isProblematicBrowser = !isGoodBrowser;
+      
+      // 额外检测一些明确有问题的浏览器
+      const knownProblematicBrowsers = [
+        // Android 系统默认浏览器
+        /Android.*Version\/[0-9]\.[0-9].*Mobile.*Safari/,
+        // 老版本的各种浏览器
+        /Chrome\/[0-7][0-9]\./,
+        /Firefox\/[0-6][0-9]\./,
+        /SamsungBrowser\/[0-9]\./,
+        // WebView 应用
+        /wv\)|WebView/i,
+        // 国产浏览器
+        /Quark|UC|QQ|Sogou|Baidu|360|MiuiBrowser|XiaoMi/i,
+        // 社交应用内置浏览器
+        /MicroMessenger|WeChat|QQBrowser|Line|Instagram|FBAV|Twitter/i,
+        // 其他 App 内嵌浏览器
+        /NewsArticle|KAKAOTALK|Pinterest|LinkedIn/i
+      ];
+      
+      const hasKnownProblems = knownProblematicBrowsers.some(regex => regex.test(userAgent));
       
       return {
-        isProblematicBrowser: isProblematicBrowser && !isGoodBrowser,
-        userAgent
+        isProblematicBrowser: isProblematicBrowser || hasKnownProblems,
+        userAgent,
+        isGoodBrowser
       };
     }
 

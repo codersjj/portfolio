@@ -33,6 +33,11 @@ export function Button({
   [key: string]: any;
 }) {
   const supports = useSupportsBackdropFilter()
+  
+  // 添加调试信息（开发环境）
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🎨 Moving Border - Backdrop Support:', supports);
+  }
 
   return (
     <Component
@@ -64,7 +69,8 @@ export function Button({
         className={cn(
           "relative border",
           "flex items-center justify-center w-full h-full text-sm antialiased flex-1 text-black dark:text-white border-neutral-200 dark:border-slate-800",
-          supports
+          // 更严格的条件：只有在明确支持时才使用 backdrop-blur
+          supports === true
             ? 'dark:bg-slate-900/[0.1] backdrop-blur-xl'
             : 'dark:bg-slate-900/[0.9]',
           className,
