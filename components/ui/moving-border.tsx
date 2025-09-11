@@ -64,7 +64,7 @@ export function Button({
         className={cn(
           "relative border",
           "flex items-center justify-center w-full h-full text-sm antialiased flex-1 text-black dark:text-white border-neutral-200 dark:border-slate-800",
-          !supports
+          supports
             ? 'dark:bg-slate-900/[0.1] backdrop-blur-xl'
             : 'dark:bg-slate-900/[0.9]',
           className,
