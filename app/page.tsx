@@ -53,20 +53,6 @@ export default function Home() {
   }, [heroLoaded]);
 
   return (
-    <main className="relative flex flex-col justify-start items-center mx-auto px-4 sm:px-6 min-h-screen">
-      <div className="max-w-7xl mx-auto w-full">
-        <FloatingNav navItems={navItems} onVisibleChange={handleVisibleChange} />
-        <Hero onLoaded={handleHeroLoaded} />
-        {heroLoaded && (
-          <>
-            <Grid />
-            <RecentProjects />
-            <Experience />
-            <Approach />
-            <Footer />
-          </>
-        )}
-      </div>
-    </main>
+    <Experience />
   );
 }
