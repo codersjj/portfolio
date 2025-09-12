@@ -10,7 +10,7 @@ function ClientLayoutInner({ children }: { children: React.ReactNode }) {
   
   return (
     <>
-      {showTopNav && <TopNavigation />}
+      {/* {showTopNav && <TopNavigation />} */}
       {children}
     </>
   );

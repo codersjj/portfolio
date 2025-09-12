@@ -53,6 +53,8 @@ export default function Home() {
   }, [heroLoaded]);
 
   return (
-    <Experience />
+    <div className="w-full h-full flex flex-wrap place-content-center">
+      <Experience />
+    </div>
   );
 }
