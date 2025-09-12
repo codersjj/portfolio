@@ -22,13 +22,11 @@ export function Button({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
   as?: any;
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
   className?: string;
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
   [key: string]: any;
 }) {
   return (
@@ -83,10 +81,8 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
   [key: string]: any;
 }) => {
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
   const pathRef = useRef<any>(null);
   const progress = useMotionValue<number>(0);
 

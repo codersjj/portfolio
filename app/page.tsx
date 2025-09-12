@@ -9,52 +9,52 @@ import Experience from "@/components/Experience";
 import Approach from "@/components/Approach";
 import Footer from "@/components/Footer";
 import { navItems } from "@/data";
-import { useTopNavStore } from "@/providers/top-navigation-store-provider";
+// import { useTopNavStore } from "@/providers/top-navigation-store-provider";
 
 export default function Home() {
-  const setShowTopNav = useTopNavStore((state) => state.setShowTopNav);
-  const [heroLoaded, setHeroLoaded] = useState(false);
+  // const setShowTopNav = useTopNavStore((state) => state.setShowTopNav);
+  // const [heroLoaded, setHeroLoaded] = useState(false);
 
-  const handleVisibleChange = (visible: boolean) => {
-    setShowTopNav(!visible);
-  };
+  // const handleVisibleChange = (visible: boolean) => {
+  //   setShowTopNav(!visible);
+  // };
 
-  // Hero 渲染完成后回调
-  const handleHeroLoaded = () => {
-    setHeroLoaded(true);
-  };
+  // // Hero 渲染完成后回调
+  // const handleHeroLoaded = () => {
+  //   setHeroLoaded(true);
+  // };
 
-  // 处理页面加载时的 hash 导航
-  useLayoutEffect(() => {
-    if (!heroLoaded || !window.location.hash) return;
+  // // 处理页面加载时的 hash 导航
+  // useLayoutEffect(() => {
+  //   if (!heroLoaded || !window.location.hash) return;
 
-    const targetId = window.location.hash.substring(1);
-    const targetElement = document.getElementById(targetId);
+  //   const targetId = window.location.hash.substring(1);
+  //   const targetElement = document.getElementById(targetId);
     
-    if (!targetElement) return;
+  //   if (!targetElement) return;
 
-    // 使用 requestAnimationFrame 确保布局完成后执行
-    let rafId: number;
+  //   // 使用 requestAnimationFrame 确保布局完成后执行
+  //   let rafId: number;
     
-    const scrollToTarget = () => {
-      rafId = requestAnimationFrame(() => {
-        targetElement.scrollIntoView({ behavior: 'smooth' });
-      });
-    };
+  //   const scrollToTarget = () => {
+  //     rafId = requestAnimationFrame(() => {
+  //       targetElement.scrollIntoView({ behavior: 'smooth' });
+  //     });
+  //   };
 
-    scrollToTarget();
+  //   scrollToTarget();
 
-    // 清理函数
-    return () => {
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-      }
-    };
-  }, [heroLoaded]);
+  //   // 清理函数
+  //   return () => {
+  //     if (rafId) {
+  //       cancelAnimationFrame(rafId);
+  //     }
+  //   };
+  // }, [heroLoaded]);
 
   return (
-    <div className="w-full h-full flex flex-wrap place-content-center">
+    // <div className="w-full h-full flex flex-wrap place-content-center">
       <Experience />
-    </div>
+    // </div>
   );
 }
