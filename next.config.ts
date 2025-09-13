@@ -6,6 +6,19 @@ const isGitHubPages = process.env.NODE_ENV === 'production' && !process.env.VERC
 const nextConfig: NextConfig = {
   /* config options here */
   basePath: isGitHubPages ? '/portfolio' : '',
+  images: {
+    // 启用图片优化
+    formats: ['image/webp', 'image/avif'],
+    // 图片尺寸配置
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // 如果使用外部图片，可以在这里配置域名
+    // domains: ['example.com'],
+  },
+  // 启用实验性功能来改善性能
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'react-icons'],
+  },
 };
 
 export default withSentryConfig(nextConfig, {

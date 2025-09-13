@@ -1,4 +1,5 @@
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Lottie from "react-lottie";
 import { IoCopyOutline } from "react-icons/io5";
@@ -53,39 +54,9 @@ export const BentoGridItem = ({
   titleClassName?: string;
 }) => {
   const { resolvedTheme } = useTheme();
-  const [imagesLoaded, setImagesLoaded] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  
-  // 预加载图片
-  useEffect(() => {
-    if (!img && !imgLightMode) {
-      setImagesLoaded(true);
-      return;
-    }
-    
-    const imagesToPreload = [img, imgLightMode].filter(Boolean);
-    let loadedCount = 0;
-    
-    imagesToPreload.forEach((src) => {
-      if (src) {
-        const image = new Image();
-        image.onload = () => {
-          loadedCount++;
-          if (loadedCount === imagesToPreload.length) {
-            setImagesLoaded(true);
-          }
-        };
-        image.onerror = () => {
-          loadedCount++;
-          if (loadedCount === imagesToPreload.length) {
-            setImagesLoaded(true);
-          }
-        };
-        image.src = src;
-      }
-    });
-  }, [img, imgLightMode]);
   
   // 组件卸载时清理定时器
   useEffect(() => {
@@ -137,49 +108,65 @@ export const BentoGridItem = ({
     >
       <div className={`w-full h-full ${id === 6 && "flex justify-center"}`}>
         <div className="absolute w-full h-full">
-          {currentImg && imagesLoaded && (
+          {currentImg && (
             <>
               {/* 如果有双图片模式，显示两张图片用于平滑切换 */}
               {imgLightMode && img && imgLightMode !== img ? (
                 <>
-                  <img
+                  <Image
                     src={img}
-                    alt={img}
+                    alt={`Background image for ${title || 'grid item'}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className={cn(
                       imgClassName, 
-                      "object-cover object-center transition-opacity duration-1300 ease-in-out absolute inset-0",
+                      "object-cover object-center transition-opacity duration-1300 ease-in-out",
                       resolvedTheme === 'light' ? 'opacity-0' : 'opacity-100'
                     )}
+                    priority={id === 1} // 首屏重要图片优先加载
+                    loading={id === 1 ? "eager" : "lazy"}
+                    onError={() => setImageError(true)}
                   />
-                  <img
+                  <Image
                     src={imgLightMode}
-                    alt={imgLightMode}
+                    alt={`Light mode background image for ${title || 'grid item'}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className={cn(
                       imgClassName, 
-                      "object-cover object-center transition-opacity duration-1300 ease-in-out absolute inset-0",
+                      "object-cover object-center transition-opacity duration-1300 ease-in-out",
                       resolvedTheme === 'light' ? 'opacity-100' : 'opacity-0'
                     )}
+                    priority={id === 1}
+                    loading={id === 1 ? "eager" : "lazy"}
+                    onError={() => setImageError(true)}
                   />
                 </>
               ) : (
-                <img
+                <Image
                   src={currentImg}
-                  alt={currentImg}
+                  alt={`Background image for ${title || 'grid item'}`}
+                  width={100}
+                  height={100}
                   className={cn(
                     imgClassName, 
-                    "object-cover object-center transition-opacity duration-300 ease-in-out",
-                    imagesLoaded ? 'opacity-100' : 'opacity-0'
+                    "object-cover object-center transition-opacity duration-300 ease-in-out"
                   )}
+                  priority={id === 1} // 首屏重要图片优先加载
+                  loading={id === 1 ? "eager" : "lazy"}
+                  onError={() => setImageError(true)}
                 />
               )}
             </>
           )}
-          {/* 加载占位符 */}
-          {!imagesLoaded && currentImg && (
+          {/* 图片加载失败的占位符 */}
+          {imageError && (
             <div className={cn(
               imgClassName,
-              "bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-900 animate-pulse"
-            )} />
+              "bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-900 animate-pulse flex items-center justify-center text-neutral-500 dark:text-neutral-400 text-sm"
+            )}>
+              Image failed to load
+            </div>
           )}
         </div>
         <div className={`absolute right-0 -bottom-5 ${id === 4 && 'w-[208px] h-[96]'} ${id === 5 && 'w-full opacity-80'}`}>
@@ -188,28 +175,37 @@ export const BentoGridItem = ({
               {/* 如果有双 spareImg 模式，显示两张图片用于平滑切换 */}
               {spareImgLightMode && spareImg && spareImgLightMode !== spareImg ? (
                 <>
-                  <img
+                  <Image
                     src={spareImg}
-                    alt={spareImg}
+                    alt={`Spare image for ${title || 'grid item'}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className={cn(
-                      "w-full h-full object-cover object-center transition-opacity duration-1300 ease-in-out absolute inset-0",
+                      "object-cover object-center transition-opacity duration-1300 ease-in-out",
                       resolvedTheme === 'light' ? 'opacity-0' : 'opacity-100'
                     )}
+                    loading="lazy"
                   />
-                  <img
+                  <Image
                     src={spareImgLightMode}
-                    alt={spareImgLightMode}
+                    alt={`Light mode spare image for ${title || 'grid item'}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className={cn(
-                      "w-full h-full object-cover object-center transition-opacity duration-1300 ease-in-out absolute inset-0",
+                      "object-cover object-center transition-opacity duration-1300 ease-in-out",
                       resolvedTheme === 'light' ? 'opacity-100' : 'opacity-0'
                     )}
+                    loading="lazy"
                   />
                 </>
               ) : currentSpareImg && (
-                <img
+                <Image
                   src={currentSpareImg}
-                  alt={currentSpareImg}
-                  className="w-full h-full object-cover object-center transition-opacity duration-300 ease-in-out"
+                  alt={`Spare image for ${title || 'grid item'}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover object-center transition-opacity duration-300 ease-in-out"
+                  loading="lazy"
                 />
               )}
             </>
