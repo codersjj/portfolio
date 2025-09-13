@@ -80,7 +80,7 @@ export default function VolumeToggleIcon({ className = '' }: { className?: strin
             className={`transition-all duration-500 delay-75 ${
               displayMuted
                 ? "opacity-0 scale-75"
-                : "opacity-70 scale-100 group-hover:animate-[wave_.5s_ease-in-out_1_0.2s]"
+                : "opacity-100 scale-100 group-hover:animate-[wave_.5s_ease-in-out_1_0.2s]"
             }`}
           />
         </svg>
