@@ -53,7 +53,7 @@ export const gridItems = [
 
   {
     id: 5,
-    title: "Currently building a Web3 knowledge-sharing rewards platform",
+    title: "Currently building Wave AI — a full-stack second-brain AI agent",
     description: "The Inside Scoop",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
@@ -76,6 +76,14 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
+    title: "AI Fusion Lab - A Full Stack AI Multi Model App",
+    des: "AI Fusion Lab is a Next.js 15 application that provides a multi-AI model chat interface. Users can interact with multiple AI models (GPT, Gemini, DeepSeek, etc.) simultaneously through a unified interface with authentication, rate limiting, and user preferences stored in Firebase.",
+    img: "/ai-fusion-lab.png",
+    iconLists: [["/next.svg", "/next-dark.svg"], "/tail.svg", "/ts.svg", ['shadcn-ui_dark.svg', 'shadcn-ui.svg'], ['/coderabbit-dark.svg', '/coderabbit-light.svg'], ['/arcjet-dark.png', '/arcjet-light.png'], ['/clerk-dark.svg', '/clerk-light.svg'], '/firebase.svg'], 
+    link: "https://ai-fusion-lab-theta.vercel.app/",
+  },
+  {
+    id: 2,
     title: "TSender UI - A Gas-Optimized ERC20 Airdrop Frontend",
     des: "This project focuses on creating a user interface for a highly gas-optimized smart contract designed for efficiently airdropping ERC20 tokens to multiple recipients simultaneously.",
     img: "/t-sender.png",
@@ -83,7 +91,7 @@ export const projects = [
     link: "https://tsender-rho.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     title: "Decentralized Lottery",
     des: "A decentralized lottery application leveraging blockchain technology for transparency and fairness, built with Next.js and Solidity.",
     img: "/nextjs-smartcontract-lottery.png",
@@ -91,7 +99,7 @@ export const projects = [
     link: "https://nextjs-smartcontract-lottery-fcc-five.vercel.app/",
   },
   {
-    id: 3,
+    id: 4,
     title: "Crowd Funding DApp",
     des: "A decentralized crowdfunding platform that enables users to create and contribute to funding campaigns using Ethereum smart contracts.",
     img: "/crowd-funding.png",
