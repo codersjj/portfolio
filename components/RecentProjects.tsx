@@ -43,7 +43,7 @@ const RecentProjects = () => {
                 {des}
               </p>
               <div className='flex justify-between items-center'>
-                <ul>
+                <ul className='flex'>
                   {iconLists.map((icon, idx) => {
                     // 使用 mounted 确保 hydration 一致性
                     let displayIcon: string
@@ -81,7 +81,7 @@ const RecentProjects = () => {
                     )
                   })}
                 </ul>
-                <p className='flex gap-4 items-center py-2 md:py-4'>
+                <p className='flex-shrink-0 flex gap-4 items-center py-2 md:py-4'>
                   <span className='text-purple-500 dark:text-purple-300'>Check Live Site</span>
                   <img src="/arrow.svg" alt="arrow" />
                 </p>
