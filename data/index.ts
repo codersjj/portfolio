@@ -76,6 +76,14 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
+    title: "LinguoFlow - Premium English Learning Platform",
+    des: "A comprehensive full-stack English learning platform with structured curriculum, progress tracking, spaced repetition logic, and admin panel. Features SSR/SSG, email-based authentication with OTP verification, daily streak calculations, fuzzy search, and analytics dashboard. Implements secure file uploads, concurrent-safe progress updates, and optimized database queries.",
+    img: "/linguo-flow.png",
+    iconLists: [["/next.svg", "/next-dark.svg"], "/tail.svg", "/ts.svg", ['/better-auth-dark.svg', 'better-auth.svg'], ['prisma-dark.svg', 'prisma.svg'], 'fusejs-logo.png'],
+    link: "https://linguo-flow.vercel.app/",
+  },
+  {
+    id: 2,
     title: "Wave AI - A Full Stack Second Brain AI Agent",
     des: "Capture, organize, and connect your thoughts with intelligent AI assistance. Transform scattered ideas into actionable.",
     img: "/wave-ai.png",
@@ -83,7 +91,7 @@ export const projects = [
     link: "https://wave-ai-agent-ruddy.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     title: "AI Fusion Lab - A Full Stack AI Multi Model App",
     des: "AI Fusion Lab is a Next.js 15 application that provides a multi-AI model chat interface. Users can interact with multiple AI models (GPT, Gemini, DeepSeek, etc.) simultaneously through a unified interface with authentication, rate limiting, and user preferences stored in Firebase.",
     img: "/ai-fusion-lab.png",
@@ -91,7 +99,7 @@ export const projects = [
     link: "https://ai-fusion-lab-theta.vercel.app/",
   },
   {
-    id: 3,
+    id: 4,
     title: "TSender UI - A Gas-Optimized ERC20 Airdrop Frontend",
     des: "This project focuses on creating a user interface for a highly gas-optimized smart contract designed for efficiently airdropping ERC20 tokens to multiple recipients simultaneously.",
     img: "/t-sender.png",
@@ -99,7 +107,7 @@ export const projects = [
     link: "https://tsender-rho.vercel.app/",
   },
   {
-    id: 4,
+    id: 5,
     title: "Decentralized Lottery",
     des: "A decentralized lottery application leveraging blockchain technology for transparency and fairness, built with Next.js and Solidity.",
     img: "/nextjs-smartcontract-lottery.png",
@@ -107,7 +115,7 @@ export const projects = [
     link: "https://nextjs-smartcontract-lottery-fcc-five.vercel.app/",
   },
   {
-    id: 5,
+    id: 6,
     title: "Crowd Funding DApp",
     des: "A decentralized crowdfunding platform that enables users to create and contribute to funding campaigns using Ethereum smart contracts.",
     img: "/crowd-funding.png",
