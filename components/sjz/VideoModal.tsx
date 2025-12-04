@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { VideoConfig } from './types';
 
 interface VideoModalProps {
@@ -7,15 +7,37 @@ interface VideoModalProps {
 }
 
 const VideoModal: React.FC<VideoModalProps> = ({ video, onClose }) => {
+    // 保存打开模态框时的滚动位置
+    const scrollPositionRef = useRef<number>(0);
+
     useEffect(() => {
         // Lock body scroll when modal is open
         if (video) {
+            // 保存当前滚动位置
+            scrollPositionRef.current = window.scrollY || window.pageYOffset;
+
+            // 锁定滚动
             document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollPositionRef.current}px`;
+            document.body.style.width = '100%';
         } else {
-            document.body.style.overflow = 'unset';
+            // 恢复滚动
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+
+            // 恢复到之前的滚动位置
+            window.scrollTo(0, scrollPositionRef.current);
         }
+
         return () => {
-            document.body.style.overflow = 'unset';
+            // 清理：确保在组件卸载时恢复正常状态
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
         };
     }, [video]);
 
