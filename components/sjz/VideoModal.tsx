@@ -52,6 +52,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ video, onClose }) => {
                     autoPlay
                     className="w-full h-full object-contain"
                     controlsList="nodownload"
+                    crossOrigin="anonymous"
                 >
                     Your browser does not support the video tag.
                 </video>

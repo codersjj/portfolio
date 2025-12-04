@@ -10,10 +10,13 @@ Sentry.init({
   // Add optional integrations for additional features
   integrations: [
     Sentry.replayIntegration(),
-    Sentry.feedbackIntegration({
-      // Additional SDK configuration goes in here, for example:
-      colorScheme: "dark",
-    }),
+    // Only show feedback button if not on /sjz page
+    ...(typeof window !== 'undefined' && !window.location.pathname.startsWith('/sjz')
+      ? [Sentry.feedbackIntegration({
+        // Additional SDK configuration goes in here, for example:
+        colorScheme: "dark",
+      })]
+      : []),
   ],
 
   // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.

@@ -17,7 +17,7 @@ export const APP_CONSTANTS = {
     },
     VIDEOS: {
         WISHES: "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-        JOURNEY: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+        JOURNEY: "https://codersjj-sjz.oss-cn-beijing.aliyuncs.com/Aria%27s_English_Speaking_Journey.mp4",
     }
 };
 
