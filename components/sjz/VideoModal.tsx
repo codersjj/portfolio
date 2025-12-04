@@ -50,9 +50,15 @@ const VideoModal: React.FC<VideoModalProps> = ({ video, onClose }) => {
                     src={video.url}
                     controls
                     autoPlay
+                    playsInline
+                    preload="auto"
                     className="w-full h-full object-contain"
                     controlsList="nodownload"
                     crossOrigin="anonymous"
+                    poster={video.thumbnail}
+                    // Mobile optimization attributes
+                    x5-video-player-type="h5"
+                    webkit-playsinline="true"
                 >
                     Your browser does not support the video tag.
                 </video>

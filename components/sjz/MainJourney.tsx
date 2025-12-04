@@ -118,13 +118,15 @@ const MainJourney: React.FC<MainJourneyProps> = ({ startAnimation, onVideoStateC
             setCurrentVideo({
                 id: 'wishes',
                 title: '老师与朋友的祝福',
-                url: APP_CONSTANTS.VIDEOS.WISHES
+                url: APP_CONSTANTS.VIDEOS.WISHES,
+                thumbnail: APP_CONSTANTS.VIDEOS.WISHES_THUMB
             });
         } else {
             setCurrentVideo({
                 id: 'journey',
                 title: '学习之旅记录',
-                url: APP_CONSTANTS.VIDEOS.JOURNEY
+                url: APP_CONSTANTS.VIDEOS.JOURNEY,
+                thumbnail: APP_CONSTANTS.VIDEOS.JOURNEY_THUMB
             });
         }
         // Notify App to pause music
