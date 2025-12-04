@@ -17,7 +17,7 @@ export const APP_CONSTANTS = {
     },
     VIDEOS: {
         WISHES: "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-        JOURNEY: "https://cdn.codersjj.cn/Aria%27s_English_Speaking_Journey.mp4",
+        JOURNEY: "https://cdn.codersjj.cn/trancode_Aria%27s_English_Speaking_Journey.mp4",
         // Thumbnails for video posters
         WISHES_THUMB: 'https://picsum.photos/800/450?random=5',
         JOURNEY_THUMB: 'https://picsum.photos/800/450?random=6',
