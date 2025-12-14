@@ -1,11 +1,11 @@
-import { BiHomeSmile } from "react-icons/bi"
+import { BiHomeSmile } from "react-icons/bi";
 
 export const navItems = [
   { name: "Home", link: "/", icon: BiHomeSmile },
-  { name: "About", link: "#about"},
+  { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
   { name: "Contact", link: "#contact" },
-]
+];
 
 export const gridItems = [
   {
@@ -16,7 +16,7 @@ export const gridItems = [
     imgClassName: "w-full h-full",
     titleClassName: "justify-end",
     img: "/b1.svg",
-    imgLightMode: '/b1-light.png',
+    imgLightMode: "/b1-light.png",
     spareImg: "",
   },
   {
@@ -53,7 +53,8 @@ export const gridItems = [
 
   {
     id: 5,
-    title: "Currently building VC Interview — a full-stack MERN video-interview & coding-practice platform",
+    title:
+      "Currently building a Full Stack E-Commerce App with React Native",
     description: "The Inside Scoop",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
@@ -65,7 +66,8 @@ export const gridItems = [
     id: 6,
     title: "Do you want to start a project together?",
     description: "",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-1 md:min-h-30 lg:min-h-50",
+    className:
+      "lg:col-span-2 md:col-span-3 md:row-span-1 md:min-h-30 lg:min-h-50",
     imgClassName: "",
     titleClassName: "justify-start md:max-w-full max-w-60 text-center",
     img: "",
@@ -76,30 +78,74 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "LinguoFlow - Premium English Learning Platform",
-    des: "A comprehensive full-stack English learning platform with structured curriculum, progress tracking, spaced repetition logic, and admin panel. Features SSR/SSG, email-based authentication with OTP verification, daily streak calculations, fuzzy search, and analytics dashboard. Implements secure file uploads, concurrent-safe progress updates, and optimized database queries.",
-    img: "/linguo-flow.png",
-    iconLists: [["/next.svg", "/next-dark.svg"], "/tail.svg", "/ts.svg", ['/better-auth-dark.svg', 'better-auth.svg'], ['prisma-dark.svg', 'prisma.svg'], 'fusejs-logo.png'],
-    link: "https://linguo-flow.vercel.app/",
+    title: "VC Interview Platform - Real-time Technical Interview System",
+    des: "A full-stack technical interview platform simulating real remote coding interviews. Supports real-time video/audio calls, live chat, and a collaborative code editor. Features secure authentication, event-driven background jobs, comprehensive testing (unit & E2E), and a modern responsive UI optimized for interview scenarios.",
+    img: "/vc-interview.png",
+    iconLists: [
+      "/MongoDB_Logomark_SpringGreen.svg",
+      "/expressjs-favicon.png",
+      "/re.svg",
+      "/jsIconGreen.svg",
+      "/tail.svg",
+      "/ts.svg",
+      ["clerk-dark.svg", "/clerk-light.svg"],
+      "tanstack-logo-color-100.png",
+      "getstream-icon.png",
+    ],
+    link: "https://vc-interview.vercel.app",
   },
   {
     id: 2,
-    title: "Wave AI - A Full Stack Second Brain AI Agent",
-    des: "Capture, organize, and connect your thoughts with intelligent AI assistance. Transform scattered ideas into actionable.",
-    img: "/wave-ai.png",
-    iconLists: [["/next.svg", "/next-dark.svg"], "/tail.svg", "/ts.svg", ['shadcn-ui_dark.svg', 'shadcn-ui.svg'], 'tanstack-logo-color-100.png', ['/better-auth-dark.svg', 'better-auth.svg'], 'hono-logo.svg', 'neon-logo.svg', ['prisma-dark.svg', 'prisma.svg']], 
-    link: "https://wave-ai-agent-ruddy.vercel.app/",
+    title: "LinguoFlow - Premium English Learning Platform",
+    des: "A comprehensive full-stack English learning platform with structured curriculum, progress tracking, spaced repetition logic, and admin panel. Features SSR/SSG, email-based authentication with OTP verification, daily streak calculations, fuzzy search, and analytics dashboard. Implements secure file uploads, concurrent-safe progress updates, and optimized database queries.",
+    img: "/linguo-flow.png",
+    iconLists: [
+      ["/next.svg", "/next-dark.svg"],
+      "/tail.svg",
+      "/ts.svg",
+      ["/better-auth-dark.svg", "better-auth.svg"],
+      ["prisma-dark.svg", "prisma.svg"],
+      "fusejs-logo.png",
+    ],
+    link: "https://linguo-flow.vercel.app/",
   },
   {
     id: 3,
-    title: "AI Fusion Lab - A Full Stack AI Multi Model App",
-    des: "AI Fusion Lab is a Next.js 15 application that provides a multi-AI model chat interface. Users can interact with multiple AI models (GPT, Gemini, DeepSeek, etc.) simultaneously through a unified interface with authentication, rate limiting, and user preferences stored in Firebase.",
-    img: "/ai-fusion-lab.png",
-    iconLists: [["/next.svg", "/next-dark.svg"], "/tail.svg", "/ts.svg", ['shadcn-ui_dark.svg', 'shadcn-ui.svg'], ['/coderabbit-dark.svg', '/coderabbit-light.svg'], ['/arcjet-dark.png', '/arcjet-light.png'], ['/clerk-dark.svg', '/clerk-light.svg'], '/firebase.svg'], 
-    link: "https://ai-fusion-lab-theta.vercel.app/",
+    title: "Wave AI - A Full Stack Second Brain AI Agent",
+    des: "Capture, organize, and connect your thoughts with intelligent AI assistance. Transform scattered ideas into actionable.",
+    img: "/wave-ai.png",
+    iconLists: [
+      ["/next.svg", "/next-dark.svg"],
+      "/tail.svg",
+      "/ts.svg",
+      ["shadcn-ui_dark.svg", "shadcn-ui.svg"],
+      "tanstack-logo-color-100.png",
+      ["/better-auth-dark.svg", "better-auth.svg"],
+      "hono-logo.svg",
+      "neon-logo.svg",
+      ["prisma-dark.svg", "prisma.svg"],
+    ],
+    link: "https://wave-ai-agent-ruddy.vercel.app/",
   },
   {
     id: 4,
+    title: "AI Fusion Lab - A Full Stack AI Multi Model App",
+    des: "AI Fusion Lab is a Next.js 15 application that provides a multi-AI model chat interface. Users can interact with multiple AI models (GPT, Gemini, DeepSeek, etc.) simultaneously through a unified interface with authentication, rate limiting, and user preferences stored in Firebase.",
+    img: "/ai-fusion-lab.png",
+    iconLists: [
+      ["/next.svg", "/next-dark.svg"],
+      "/tail.svg",
+      "/ts.svg",
+      ["shadcn-ui_dark.svg", "shadcn-ui.svg"],
+      ["/coderabbit-dark.svg", "/coderabbit-light.svg"],
+      ["/arcjet-dark.png", "/arcjet-light.png"],
+      ["/clerk-dark.svg", "/clerk-light.svg"],
+      "/firebase.svg",
+    ],
+    link: "https://ai-fusion-lab-theta.vercel.app/",
+  },
+  {
+    id: 5,
     title: "TSender UI - A Gas-Optimized ERC20 Airdrop Frontend",
     des: "This project focuses on creating a user interface for a highly gas-optimized smart contract designed for efficiently airdropping ERC20 tokens to multiple recipients simultaneously.",
     img: "/t-sender.png",
@@ -107,7 +153,7 @@ export const projects = [
     link: "https://tsender-rho.vercel.app/",
   },
   {
-    id: 5,
+    id: 6,
     title: "Decentralized Lottery",
     des: "A decentralized lottery application leveraging blockchain technology for transparency and fairness, built with Next.js and Solidity.",
     img: "/nextjs-smartcontract-lottery.png",
@@ -115,13 +161,13 @@ export const projects = [
     link: "https://nextjs-smartcontract-lottery-fcc-five.vercel.app/",
   },
   {
-    id: 6,
+    id: 7,
     title: "Crowd Funding DApp",
     des: "A decentralized crowdfunding platform that enables users to create and contribute to funding campaigns using Ethereum smart contracts.",
     img: "/crowd-funding.png",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg"],
     link: "https://thirdweb-crowd-funding.vercel.app/",
-  }
+  },
 ];
 
 export const workExperience = [
@@ -159,16 +205,16 @@ export const socialMedia = [
   {
     id: 1,
     img: "/git.svg",
-    link: "https://github.com/codersjj"
+    link: "https://github.com/codersjj",
   },
   {
     id: 2,
     img: "/twit.svg",
-    link: "https://x.com/codersjj"
+    link: "https://x.com/codersjj",
   },
   {
     id: 3,
     img: "/link.svg",
-    link: "https://www.linkedin.com/in/junjie-sha-778109357/"
+    link: "https://www.linkedin.com/in/junjie-sha-778109357/",
   },
 ];
