@@ -138,7 +138,7 @@ const MainJourney: React.FC<MainJourneyProps> = ({
     if (type === "wishes") {
       setCurrentVideo({
         id: "wishes",
-        title: "老师与朋友的祝福",
+        title: "老师与同学的祝福",
         url: APP_CONSTANTS.VIDEOS.WISHES,
         thumbnail: APP_CONSTANTS.VIDEOS.WISHES_THUMB,
       });
@@ -259,7 +259,7 @@ const MainJourney: React.FC<MainJourneyProps> = ({
                 <Play className="w-6 h-6 text-amber-100 fill-current ml-1" />
               </div>
               <span className="text-amber-100 font-serif tracking-widest text-lg">
-                老师与朋友的祝福
+                老师与同学的祝福
               </span>
             </div>
           </div>
