@@ -251,7 +251,7 @@ const MemoriesCardsSection: React.FC<MemoriesCardsSectionProps> = ({
             <img
               src={APP_CONSTANTS.IMAGES.PORTRAIT_2}
               alt="Memory 2"
-              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 ease-out"
+              className="w-full h-full object-cover object-bottom transform group-hover:scale-110 transition-transform duration-1000 ease-out"
             />
 
             {/* Heart effect on hover */}
@@ -316,7 +316,7 @@ const MemoriesCardsSection: React.FC<MemoriesCardsSectionProps> = ({
             <img
               src={APP_CONSTANTS.IMAGES.PORTRAIT_3}
               alt="Memory 3"
-              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 ease-out"
+              className="w-full h-full object-cover object-[50%_-30px] transform group-hover:scale-110 transition-transform duration-1000 ease-out"
             />
 
             {/* Sparkles effect on hover */}

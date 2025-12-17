@@ -158,6 +158,12 @@ const MainJourney: React.FC<MainJourneyProps> = ({
     setCurrentVideo(null);
     // Notify App to resume music
     onVideoStateChange(false);
+
+    // 修复：移动端全屏播放视频返回后，GSAP 动画失效的问题
+    // 需要刷新 ScrollTrigger 以重新计算位置，延迟执行确保 DOM 和滚动位置已恢复
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
   };
 
   if (!startAnimation) return null;
